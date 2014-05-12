@@ -63,7 +63,7 @@ ImCoder.prototype.bind = function () {
             var lang = 'langs/' + $(this).text() + '.txt';
 
             $.get(lang, function(data) {
-                that.text = '\n' + data;
+                that.text = that.setText(data);
             });
 
             $('#im-coder-sidebar').hide();
@@ -77,8 +77,7 @@ ImCoder.prototype.bind = function () {
 
           setTimeout(function () {
 
-            that.text = $(element).val();
-
+            that.text = that.setText($(element).val());
 
             $('#im-coder-sidebar').fadeOut('slow');
 
@@ -86,6 +85,10 @@ ImCoder.prototype.bind = function () {
 
     });
 
+};
+
+ImCoder.prototype.setText = function (text)  {
+    return this.text = '\n' + text;
 };
 
 ImCoder.prototype.content = function () {
