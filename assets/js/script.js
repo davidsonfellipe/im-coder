@@ -16,6 +16,9 @@ var ImCoder = function (config) {
 
     this.lettersByTyping = 5;
 
+    this.lineBreak = '<br><span class="im-coder-line"></span>';
+    this.tab = '&nbsp;&nbsp;';
+
     var that = this;
 
     this.reset();
@@ -60,7 +63,7 @@ ImCoder.prototype.bind = function () {
             var lang = 'langs/' + $(this).text() + '.txt';
 
             $.get(lang, function(data) {
-                that.text = '\n' + data;
+                that.text = that.setText(data);
             });
 
             $('#im-coder-sidebar').hide();
@@ -74,8 +77,7 @@ ImCoder.prototype.bind = function () {
 
           setTimeout(function () {
 
-            that.text = $(element).val();
-
+            that.text = that.setText($(element).val());
 
             $('#im-coder-sidebar').fadeOut('slow');
 
@@ -83,6 +85,10 @@ ImCoder.prototype.bind = function () {
 
     });
 
+};
+
+ImCoder.prototype.setText = function (text)  {
+    return this.text = '\n' + text;
 };
 
 ImCoder.prototype.content = function () {
@@ -100,9 +106,11 @@ ImCoder.prototype.addText = function () {
                 .substring(0, words.length - 1));
         }
 
+        if(this.index <= this.lettersByTyping) {
+            $('#im-coder-editor').addClass('im-coder-editing');
+        }
+
         this.index += this.lettersByTyping;
-        
-        var isFirstLine = this.index <= this.lettersByTyping ? '' : '<br>';
 
         var text = $('<div/>')
             .text(this.text.substring(0, this.index))
@@ -113,13 +121,9 @@ ImCoder.prototype.addText = function () {
         var newTab = new RegExp('\\t', 'g');
 
         $('#im-coder-editor').html(
-            text.replace(newLine, isFirstLine + '<span class="im-coder-line"></span>')
-            .replace(newTab, '&nbsp;&nbsp;')
+            text.replace(newLine, this.lineBreak)
+            .replace(newTab, this.tab)
         );
-
-        if(isFirstLine) {
-            $('#im-coder-editor').addClass('im-coder-editing');
-        }
 
         window.scrollBy(0, 150);
     }
