@@ -16,6 +16,9 @@ var ImCoder = function (config) {
 
     this.lettersByTyping = 5;
 
+    this.lineBreak = '<br><span class="im-coder-line"></span>';
+    this.tab = '&nbsp;&nbsp;';
+
     var that = this;
 
     this.reset();
@@ -113,8 +116,8 @@ ImCoder.prototype.addText = function () {
         var newTab = new RegExp('\\t', 'g');
 
         $('#im-coder-editor').html(
-            text.replace(newLine, isFirstLine + '<span class="im-coder-line"></span>')
-            .replace(newTab, '&nbsp;&nbsp;')
+            text.replace(newLine, this.lineBreak)
+            .replace(newTab, this.tab)
         );
 
         if(isFirstLine) {
