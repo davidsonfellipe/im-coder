@@ -1,0 +1,1468 @@
+html,body {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset,img {
+    border: 0;
+}
+
+input {
+    border: 1px solid #b0b0b0;
+    padding: 3px 5px 4px;
+    color: #979797;
+    width: 190px;
+}
+
+address,caption,cite,code,dfn,th,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol,ul {
+    list-style: none;
+}
+
+caption,th {
+    text-align: left;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before,q:after {
+    content: '';
+}
+
+abbr,acronym {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+@font-face {
+    font-family:"FontAwesome";src:url("../font/fontawesome-webfont.eot");src:url("../font/fontawesome-webfont.eot?#iefix") format("eot"),url("../font/fontawesome-webfont.woff") format("woff"),url("../font/fontawesome-webfont.ttf") format("truetype"),url("../font/fontawesome-webfont.svg#FontAwesome") format("svg");font-weight:normal;font-style:normal;
+}
+
+[class^="icon-"]:before,[class*=" icon-"]:before {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+}
+
+a [class^="icon-"],a [class*=" icon-"] {
+    display: inline-block;
+    text-decoration: inherit;
+}
+
+.icon-large:before {
+    vertical-align: top;
+    font-size: 1.3333333333333333em;
+}
+
+.btn [class^="icon-"],.btn [class*=" icon-"] {
+    line-height: .9em;
+}
+
+li [class^="icon-"],li [class*=" icon-"] {
+    display: inline-block;
+    text-align: center;
+}
+
+li .icon-large[class^="icon-"],li .icon-large[class*=" icon-"] {
+    width: 1.875em;
+}
+
+li[class^="icon-"],li[class*=" icon-"] {
+    margin-left: 0;
+    list-style-type: none;
+}
+
+li[class^="icon-"]:before,li[class*=" icon-"]:before {
+    text-indent: -2em;
+    text-align: center;
+}
+
+li[class^="icon-"].icon-large:before,li[class*=" icon-"].icon-large:before {
+    text-indent: -1.3333333333333333em;
+}
+
+.icon-glass:before {
+    content: "\f000";
+}
+
+.icon-music:before {
+    content: "\f001";
+}
+
+.icon-search:before {
+    content: "\f002";
+}
+
+.icon-envelope:before {
+    content: "\f003";
+}
+
+.icon-heart:before {
+    content: "\f004";
+}
+
+.icon-star:before {
+    content: "\f005";
+}
+
+.icon-star-empty:before {
+    content: "\f006";
+}
+
+.icon-user:before {
+    content: "\f007";
+}
+
+.icon-film:before {
+    content: "\f008";
+}
+
+.icon-th-large:before {
+    content: "\f009";
+}
+
+.icon-th:before {
+    content: "\f00a";
+}
+
+.icon-th-list:before {
+    content: "\f00b";
+}
+
+.icon-ok:before {
+    content: "\f00c";
+}
+
+.icon-remove:before {
+    content: "\f00d";
+}
+
+.icon-zoom-in:before {
+    content: "\f00e";
+}
+
+.icon-zoom-out:before {
+    content: "\f010";
+}
+
+.icon-off:before {
+    content: "\f011";
+}
+
+.icon-signal:before {
+    content: "\f012";
+}
+
+.icon-cog:before {
+    content: "\f013";
+}
+
+.icon-trash:before {
+    content: "\f014";
+}
+
+.icon-home:before {
+    content: "\f015";
+}
+
+.icon-file:before {
+    content: "\f016";
+}
+
+.icon-time:before {
+    content: "\f017";
+}
+
+.icon-road:before {
+    content: "\f018";
+}
+
+.icon-download-alt:before {
+    content: "\f019";
+}
+
+.icon-download:before {
+    content: "\f01a";
+}
+
+.icon-upload:before {
+    content: "\f01b";
+}
+
+.icon-inbox:before {
+    content: "\f01c";
+}
+
+.icon-play-circle:before {
+    content: "\f01d";
+}
+
+.icon-repeat:before {
+    content: "\f01e";
+}
+
+.icon-refresh:before {
+    content: "\f021";
+}
+
+.icon-list-alt:before {
+    content: "\f022";
+}
+
+.icon-lock:before {
+    content: "\f023";
+}
+
+.icon-flag:before {
+    content: "\f024";
+}
+
+.icon-headphones:before {
+    content: "\f025";
+}
+
+.icon-volume-off:before {
+    content: "\f026";
+}
+
+.icon-volume-down:before {
+    content: "\f027";
+}
+
+.icon-volume-up:before {
+    content: "\f028";
+}
+
+.icon-qrcode:before {
+    content: "\f029";
+}
+
+.icon-barcode:before {
+    content: "\f02a";
+}
+
+.icon-tag:before {
+    content: "\f02b";
+}
+
+.icon-tags:before {
+    content: "\f02c";
+}
+
+.icon-book:before {
+    content: "\f02d";
+}
+
+.icon-bookmark:before {
+    content: "\f02e";
+}
+
+.icon-print:before {
+    content: "\f02f";
+}
+
+.icon-camera:before {
+    content: "\f030";
+}
+
+.icon-font:before {
+    content: "\f031";
+}
+
+.icon-bold:before {
+    content: "\f032";
+}
+
+.icon-italic:before {
+    content: "\f033";
+}
+
+.icon-text-height:before {
+    content: "\f034";
+}
+
+.icon-text-width:before {
+    content: "\f035";
+}
+
+.icon-align-left:before {
+    content: "\f036";
+}
+
+.icon-align-center:before {
+    content: "\f037";
+}
+
+.icon-align-right:before {
+    content: "\f038";
+}
+
+.icon-align-justify:before {
+    content: "\f039";
+}
+
+.icon-list:before {
+    content: "\f03a";
+}
+
+.icon-indent-left:before {
+    content: "\f03b";
+}
+
+.icon-indent-right:before {
+    content: "\f03c";
+}
+
+.icon-facetime-video:before {
+    content: "\f03d";
+}
+
+.icon-picture:before {
+    content: "\f03e";
+}
+
+.icon-pencil:before {
+    content: "\f040";
+}
+
+.icon-map-marker:before {
+    content: "\f041";
+}
+
+.icon-adjust:before {
+    content: "\f042";
+}
+
+.icon-tint:before {
+    content: "\f043";
+}
+
+.icon-edit:before {
+    content: "\f044";
+}
+
+.icon-share:before {
+    content: "\f045";
+}
+
+.icon-check:before {
+    content: "\f046";
+}
+
+.icon-move:before {
+    content: "\f047";
+}
+
+.icon-step-backward:before {
+    content: "\f048";
+}
+
+.icon-fast-backward:before {
+    content: "\f049";
+}
+
+.icon-backward:before {
+    content: "\f04a";
+}
+
+.icon-play:before {
+    content: "\f04b";
+}
+
+.icon-pause:before {
+    content: "\f04c";
+}
+
+.icon-stop:before {
+    content: "\f04d";
+}
+
+.icon-forward:before {
+    content: "\f04e";
+}
+
+.icon-fast-forward:before {
+    content: "\f050";
+}
+
+.icon-step-forward:before {
+    content: "\f051";
+}
+
+.icon-eject:before {
+    content: "\f052";
+}
+
+.icon-chevron-left:before {
+    content: "\f053";
+}
+
+.icon-chevron-right:before {
+    content: "\f054";
+}
+
+.icon-plus-sign:before {
+    content: "\f055";
+}
+
+.icon-minus-sign:before {
+    content: "\f056";
+}
+
+.icon-remove-sign:before {
+    content: "\f057";
+}
+
+.icon-ok-sign:before {
+    content: "\f058";
+}
+
+.icon-question-sign:before {
+    content: "\f059";
+}
+
+.icon-info-sign:before {
+    content: "\f05a";
+}
+
+.icon-screenshot:before {
+    content: "\f05b";
+}
+
+.icon-remove-circle:before {
+    content: "\f05c";
+}
+
+.icon-ok-circle:before {
+    content: "\f05d";
+}
+
+.icon-ban-circle:before {
+    content: "\f05e";
+}
+
+.icon-arrow-left:before {
+    content: "\f060";
+}
+
+.icon-arrow-right:before {
+    content: "\f061";
+}
+
+.icon-arrow-up:before {
+    content: "\f062";
+}
+
+.icon-arrow-down:before {
+    content: "\f063";
+}
+
+.icon-share-alt:before {
+    content: "\f064";
+}
+
+.icon-resize-full:before {
+    content: "\f065";
+}
+
+.icon-resize-small:before {
+    content: "\f066";
+}
+
+.icon-plus:before {
+    content: "\f067";
+}
+
+.icon-minus:before {
+    content: "\f068";
+}
+
+.icon-asterisk:before {
+    content: "\f069";
+}
+
+.icon-exclamation-sign:before {
+    content: "\f06a";
+}
+
+.icon-gift:before {
+    content: "\f06b";
+}
+
+.icon-leaf:before {
+    content: "\f06c";
+}
+
+.icon-fire:before {
+    content: "\f06d";
+}
+
+.icon-eye-open:before {
+    content: "\f06e";
+}
+
+.icon-eye-close:before {
+    content: "\f070";
+}
+
+.icon-warning-sign:before {
+    content: "\f071";
+}
+
+.icon-plane:before {
+    content: "\f072";
+}
+
+.icon-calendar:before {
+    content: "\f073";
+}
+
+.icon-random:before {
+    content: "\f074";
+}
+
+.icon-comment:before {
+    content: "\f075";
+}
+
+.icon-magnet:before {
+    content: "\f076";
+}
+
+.icon-chevron-up:before {
+    content: "\f077";
+}
+
+.icon-chevron-down:before {
+    content: "\f078";
+}
+
+.icon-retweet:before {
+    content: "\f079";
+}
+
+.icon-shopping-cart:before {
+    content: "\f07a";
+}
+
+.icon-folder-close:before {
+    content: "\f07b";
+}
+
+.icon-folder-open:before {
+    content: "\f07c";
+}
+
+.icon-resize-vertical:before {
+    content: "\f07d";
+}
+
+.icon-resize-horizontal:before {
+    content: "\f07e";
+}
+
+.icon-bar-chart:before {
+    content: "\f080";
+}
+
+.icon-twitter-sign:before {
+    content: "\f081";
+}
+
+.icon-facebook-sign:before {
+    content: "\f082";
+}
+
+.icon-camera-retro:before {
+    content: "\f083";
+}
+
+.icon-key:before {
+    content: "\f084";
+}
+
+.icon-cogs:before {
+    content: "\f085";
+}
+
+.icon-comments:before {
+    content: "\f086";
+}
+
+.icon-thumbs-up:before {
+    content: "\f087";
+}
+
+.icon-thumbs-down:before {
+    content: "\f088";
+}
+
+.icon-star-half:before {
+    content: "\f089";
+}
+
+.icon-heart-empty:before {
+    content: "\f08a";
+}
+
+.icon-signout:before {
+    content: "\f08b";
+}
+
+.icon-linkedin-sign:before {
+    content: "\f08c";
+}
+
+.icon-pushpin:before {
+    content: "\f08d";
+}
+
+.icon-external-link:before {
+    content: "\f08e";
+}
+
+.icon-signin:before {
+    content: "\f090";
+}
+
+.icon-trophy:before {
+    content: "\f091";
+}
+
+.icon-github-sign:before {
+    content: "\f092";
+}
+
+.icon-upload-alt:before {
+    content: "\f093";
+}
+
+.icon-lemon:before {
+    content: "\f094";
+}
+
+.icon-phone:before {
+    content: "\f095";
+}
+
+.icon-check-empty:before {
+    content: "\f096";
+}
+
+.icon-bookmark-empty:before {
+    content: "\f097";
+}
+
+.icon-phone-sign:before {
+    content: "\f098";
+}
+
+.icon-twitter:before {
+    content: "\f099";
+}
+
+.icon-facebook:before {
+    content: "\f09a";
+}
+
+.icon-github:before {
+    content: "\f09b";
+}
+
+.icon-unlock:before {
+    content: "\f09c";
+}
+
+.icon-credit-card:before {
+    content: "\f09d";
+}
+
+.icon-rss:before {
+    content: "\f09e";
+}
+
+.icon-hdd:before {
+    content: "\f0a0";
+}
+
+.icon-bullhorn:before {
+    content: "\f0a1";
+}
+
+.icon-bell:before {
+    content: "\f0a2";
+}
+
+.icon-certificate:before {
+    content: "\f0a3";
+}
+
+.icon-hand-right:before {
+    content: "\f0a4";
+}
+
+.icon-hand-left:before {
+    content: "\f0a5";
+}
+
+.icon-hand-up:before {
+    content: "\f0a6";
+}
+
+.icon-hand-down:before {
+    content: "\f0a7";
+}
+
+.icon-circle-arrow-left:before {
+    content: "\f0a8";
+}
+
+.icon-circle-arrow-right:before {
+    content: "\f0a9";
+}
+
+.icon-circle-arrow-up:before {
+    content: "\f0aa";
+}
+
+.icon-circle-arrow-down:before {
+    content: "\f0ab";
+}
+
+.icon-globe:before {
+    content: "\f0ac";
+}
+
+.icon-wrench:before {
+    content: "\f0ad";
+}
+
+.icon-tasks:before {
+    content: "\f0ae";
+}
+
+.icon-filter:before {
+    content: "\f0b0";
+}
+
+.icon-briefcase:before {
+    content: "\f0b1";
+}
+
+.icon-fullscreen:before {
+    content: "\f0b2";
+}
+
+.icon-group:before {
+    content: "\f0c0";
+}
+
+.icon-link:before {
+    content: "\f0c1";
+}
+
+.icon-cloud:before {
+    content: "\f0c2";
+}
+
+.icon-beaker:before {
+    content: "\f0c3";
+}
+
+.icon-cut:before {
+    content: "\f0c4";
+}
+
+.icon-copy:before {
+    content: "\f0c5";
+}
+
+.icon-paper-clip:before {
+    content: "\f0c6";
+}
+
+.icon-save:before {
+    content: "\f0c7";
+}
+
+.icon-sign-blank:before {
+    content: "\f0c8";
+}
+
+.icon-reorder:before {
+    content: "\f0c9";
+}
+
+.icon-list-ul:before {
+    content: "\f0ca";
+}
+
+.icon-list-ol:before {
+    content: "\f0cb";
+}
+
+.icon-strikethrough:before {
+    content: "\f0cc";
+}
+
+.icon-underline:before {
+    content: "\f0cd";
+}
+
+.icon-table:before {
+    content: "\f0ce";
+}
+
+.icon-magic:before {
+    content: "\f0d0";
+}
+
+.icon-truck:before {
+    content: "\f0d1";
+}
+
+.icon-pinterest:before {
+    content: "\f0d2";
+}
+
+.icon-pinterest-sign:before {
+    content: "\f0d3";
+}
+
+.icon-google-plus-sign:before {
+    content: "\f0d4";
+}
+
+.icon-google-plus:before {
+    content: "\f0d5";
+}
+
+.icon-money:before {
+    content: "\f0d6";
+}
+
+.icon-caret-down:before {
+    content: "\f0d7";
+}
+
+.icon-caret-up:before {
+    content: "\f0d8";
+}
+
+.icon-caret-left:before {
+    content: "\f0d9";
+}
+
+.icon-caret-right:before {
+    content: "\f0da";
+}
+
+.icon-columns:before {
+    content: "\f0db";
+}
+
+.icon-sort:before {
+    content: "\f0dc";
+}
+
+.icon-sort-down:before {
+    content: "\f0dd";
+}
+
+.icon-sort-up:before {
+    content: "\f0de";
+}
+
+.icon-envelope-alt:before {
+    content: "\f0e0";
+}
+
+.icon-linkedin:before {
+    content: "\f0e1";
+}
+
+.icon-undo:before {
+    content: "\f0e2";
+}
+
+.icon-legal:before {
+    content: "\f0e3";
+}
+
+.icon-dashboard:before {
+    content: "\f0e4";
+}
+
+.icon-comment-alt:before {
+    content: "\f0e5";
+}
+
+.icon-comments-alt:before {
+    content: "\f0e6";
+}
+
+.icon-bolt:before {
+    content: "\f0e7";
+}
+
+.icon-sitemap:before {
+    content: "\f0e8";
+}
+
+.icon-umbrella:before {
+    content: "\f0e9";
+}
+
+.icon-paste:before {
+    content: "\f0ea";
+}
+
+.icon-user-md:before {
+    content: "\f200";
+}
+
+body {
+    background: url(../img/debut_light.png) #f7f7f7;
+    color: rgba(0,0,0,0.8);
+    font-family: Georgia;
+    font-size: 15px;
+}
+
+body:before {
+    content: "";
+    height: 10px;
+    left: 0;
+    position: fixed;
+    top: -10px;
+    width: 100%;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    z-index: 100;
+}
+
+.container {
+    margin: auto;
+    position: relative;
+    padding-top: 70px;
+    width: 960px;
+}
+
+.container.container-media {
+    width: 100%;
+}
+
+.nav {
+    background-color: #333;
+    background-image: linear-gradient(to bottom, #222222,#111111);
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    left: 0;
+    padding: 10px;
+    position: fixed;
+    text-transform: uppercase;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav .masterhead {
+    float: left;
+    line-height: 40px;
+}
+
+.nav .nav-lists {
+    float: right;
+    padding-right: 20px;
+}
+
+.nav .itens {
+    display: inline-block;
+}
+
+.nav .itens li {
+    display: inline-block;
+    *display: inline;
+    margin-left: 10px;
+    zoom: 1;
+}
+
+.nav a {
+    color: rgba(255,255,255,0.8);
+}
+
+.nav .social {
+    border-left: 1px solid #6e6e6e;
+    margin-left: 15px;
+    padding-left: 15px;
+}
+
+.nav .button {
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px 0 0;
+    padding: 10px 0 10px 0;
+    text-align: left;
+}
+
+.nav .button:before {
+    color: #eee;
+    text-indent: -10px;
+    top: 0;
+}
+
+.nav .button:hover {
+    border-left-color: transparent;
+}
+
+.footer {
+    color: #ccc;
+    font-size: 14px;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: lowercase;
+    width: 100%;
+}
+
+.aboutme {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 100px auto 40px auto;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.aboutme .details {
+    display: none;
+    margin: auto;
+    padding: 0 20px;
+    text-align: left;
+    width: 710px;
+}
+
+.aboutme .name,.aboutme .hi,.aboutme .page-404 .hi,.page-404 .aboutme .hi {
+    color: rgba(0,0,0,0.8);
+    font-size: 83px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.aboutme .hi {
+    font-size: 150px;
+    display: block;
+    margin-left: -5px;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    width: 200px;
+}
+
+.aboutme .hi:hover {
+    filter: alpha(opacity=0.5);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    transform: scale(1.3, 1.3);
+    -ms-transform: scale(1.3, 1.3);
+    -webkit-transform: scale(1.3, 1.3);
+    -o-transform: scale(1.3, 1.3);
+    -moz-transform: scale(1.3, 1.3);
+}
+
+.aboutme .job {
+    color: #666;
+    font-family: Georgia;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: light;
+    text-align: right;
+    text-transform: lowercase;
+    width: 100%;
+}
+
+.button-list {
+    float: right;
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.button-list-item {
+    display: inline-block;
+}
+
+.button {
+    background-color: #fff;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 10px 0 0;
+    opacity: 0.8;
+    padding: 10px 10px 10px 25px;
+    text-align: left;
+    -webkit-transition: border 0.6s linear;
+    -moz-transition: border 0.6s linear;
+    -o-transition: border 0.6s linear;
+    -ms-transition: border 0.6s linear;
+    transition: border 0.6s linear;
+}
+
+.button>span {
+    margin-right: 5px;
+}
+
+.button:before {
+    color: #c30;
+    opacity: .8;
+    text-indent: -20px;
+    top: 0;
+    transition: all 0.6s linear;
+}
+
+.button:hover {
+    border-left-color: #c30;
+}
+
+.list .list-item {
+    display: block;
+    position: relative;
+}
+
+.list .list-item a {
+    background: none repeat scroll 0 0 rgba(255,255,255,0.6);
+    border-left: 4px solid #c30;
+    box-shadow: 0 0 2px #d0d0d0;
+    display: block;
+    margin: 2px 0 10px;
+    overflow: hidden;
+    padding: 20px 30px 20px 60px;
+    -webkit-transition: background-color 0.3s linear;
+    -moz-transition: background-color 0.3s linear;
+    -o-transition: background-color 0.3s linear;
+    -ms-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+
+.list .list-item a:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.list .list-item .list-note {
+    color: #ccc;
+    position: absolute;
+    width: 200px;
+    right: 20px;
+    text-align: right;
+    top: 20px;
+}
+
+.list .list-item .label {
+    font-size: 10px;
+    background-color: #c30;
+    padding: 3px 5px;
+    color: #fff;
+    font-weight: bold;
+    font-family: "Helvetica Neue";
+    text-transform: uppercase;
+}
+
+.list .list-item .lang {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+.title {
+    margin: 30px 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    color: #333;
+    font-size: 60px;
+    letter-spacing: -1.75px;
+    line-height: 75px;
+}
+
+.post-content {
+    background: none repeat scroll 0 0 rgba(255,255,255,0.7);
+    box-shadow: 0 0 2px #d0d0d0;
+    font-family: Georgia;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.5em;
+    margin: 0 0 20px 0;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.post-content pre,.post-content p,.post-content ol,.post-content ul,.post-content dl {
+    padding: 10px 40px;
+}
+
+.post-content li {
+    list-style-type: disc;
+}
+
+.post-content dt {
+    font-weight: bold;
+}
+
+.post-content h2 {
+    background-color: rgba(255,255,255,0.8);
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px 20px 10px 40px;
+    margin: 10px 0;
+    border-left: 4px solid #c30;
+}
+
+.post-content pre {
+    background-color: rgba(255,255,255,0.9);
+    width: 880px;
+    margin: 10px 0;
+    overflow: auto;
+}
+
+.post-content a {
+    text-decoration: underline;
+    color: #c30;
+}
+
+.post-content img,.post-content iframe {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.pagination {
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+.pagination .prev,.pagination .next {
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    width: 434px;
+    border-left-width: 0;
+}
+
+.pagination .next {
+    margin: 0;
+    text-align: right;
+}
+
+@media only screen and (max-width: 420px) {
+    .post-content img {
+        width: 100%;
+    }
+}
+
+.talks .talk-local {
+    display: block;
+    color: #999;
+    margin-top: 5px;
+}
+
+.talks .talk-info {
+    color: #ccc;
+    position: absolute;
+    right: 0px;
+    text-align: right;
+    text-transform: lowercase;
+    top: 15px;
+    width: 85px;
+}
+
+.talks .talk-info .talk-date,.talks .talk-info .talk-date-day,.talks .talk-info .talk-date-month {
+    display: block;
+}
+
+.talks .talk-info .talk-date,.talks .talk-info .talk-year {
+    color: #666;
+    font-size: 9px;
+    height: 40px;
+    padding: 3px 0px 5px 0px;
+    text-align: center;
+    width: 60px;
+    -moz-box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.talks .talk-info .talk-date-year {
+    display: block;
+    margin-top: 5px;
+}
+
+.talks .talk-info .talk-date-day {
+    color: #ccc;
+    display: block;
+    font-size: 25px;
+    line-height: 23px;
+}
+
+.projects .list-item a {
+    padding: 20px 30px;
+}
+
+.page-404 {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 100px auto 40px auto;
+    padding: 0 10px;
+    text-align: left;
+    width: 960px;
+}
+
+.page-404 .details {
+    display: none;
+    margin: auto;
+    padding: 0 20px;
+    text-align: left;
+    width: 710px;
+}
+
+.page-404 .name,.page-404 .aboutme .hi,.aboutme .page-404 .hi,.page-404 .hi {
+    color: rgba(0,0,0,0.8);
+    font-size: 83px;
+    font-weight: bold;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+}
+
+.page-404 .hi {
+    font-size: 150px;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: -5px;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    width: 200px;
+}
+
+.page-404 .hi:hover {
+    filter: alpha(opacity=0.5);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    transform: scale(1.3, 1.3);
+    -ms-transform: scale(1.3, 1.3);
+    -webkit-transform: scale(1.3, 1.3);
+    -o-transform: scale(1.3, 1.3);
+    -moz-transform: scale(1.3, 1.3);
+}
+
+@media only screen and (max-width: 420px) {
+    .container {
+        padding-top: 85px;
+        width: 100%;
+    }
+
+    .title {
+        font-size: 30px;
+        margin: 15px 0;
+    }
+
+    .title:first-child {
+        margin-top: 40px;
+    }
+
+    .nav .nav-lists {
+        float: left;
+        padding-right: 0;
+    }
+
+    .nav .itens li:first-child {
+        margin-left: 0px;
+    }
+
+    .nav .itens li:first-child {
+        margin-left: 0;
+    }
+
+    .nav .social {
+        margin-left: 0;
+        border-left-width: 0;
+        padding-left: 10px;
+    }
+
+    .aboutme .hi {
+        font-size: 100px;
+    }
+
+    .aboutme {
+        margin: 0px auto 40px auto;
+    }
+
+    .aboutme .name,.aboutme .hi {
+        font-size: 20px;
+    }
+
+    .aboutme .job {
+        font-size: 12px;
+    }
+
+    .button-list {
+        float: none;
+        clear: both;
+    }
+
+    .button-list .button-list-item {
+        display: block;
+    }
+
+    .button-list .button {
+        margin-bottom: 5px;
+        padding: 10px 15px 10px 30px;
+        text-align: left;
+        width: 100%;
+    }
+
+    .list .list-item {
+        font-size: 13px;
+    }
+
+    .list .list-item .list-note {
+        font-size: 0.8em;
+        right: 5px;
+        text-align: right;
+        top: 5px;
+    }
+
+    .talks .talk-info {
+        top: -2px;
+        right: -24px;
+    }
+
+    .talks .talk-info .talk-date {
+        border: 0;
+        box-shadow: 0 0 0;
+        top: 0;
+    }
+
+    .talks .talk-info .talk-date-day,.talks .talk-info .talk-date-month {
+        display: inline;
+    }
+
+    .talks .talk-info .talk-date-day {
+        font-size: 16px;
+    }
+}

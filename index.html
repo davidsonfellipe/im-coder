@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>I'm coder</title>
+    <meta name="author" content="Davidson Fellipe">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="I'm coder, a app for fake coders">
+    <meta property="og:site_name" content="Davidson Fellipe">
+    <meta property="og:url" content="http://fellipe.com/apps/im-coder/">
+    <meta property="og:image" content="http://fellipe.com/apps/im-coder/assets/img/fb.png">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="I'm coder, a app for fake coders">
+    <meta property="fb:app_id" content="337306756343400">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body class="im-coder">
+    <div id='im-coder-editor' class="im-coder-editor"></div>
+    <section id='im-coder-sidebar' class="im-coder-sidebar">
+      <header class="im-coder-header">
+        <div class="im-coder-logo"></div>
+        <p class="im-coder-slogan">Create fake codes for classes, movies, tv shows...
+          <br>Or be a troll using for live coding at talks ;) </p>
+      </header>
+      <ul class="im-coder-langs">
+        <li class="im-coder-lang">css</li>
+        <li class="im-coder-lang">html</li>
+        <li class="im-coder-lang">php</li>
+        <li class="im-coder-lang">python</li>
+        <li class="im-coder-lang">js</li>
+        <li>
+          <textarea class="im-coder-paste" placeholder="choose one language or paste a fake code here"></textarea>
+        </li>
+      </ul>
+      <footer class="im-coder-footer">
+        <div class="im-coder-social fb-like" data-href="http://fellipe.com/apps/im-coder/" data-width="300" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+        <iframe src="http://ghbtns.com/github-btn.html?user=davidsonfellipe&repo=im-coder&type=fork&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20" class="im-coder-social "></iframe>
+        <div class="g-plusone im-coder-social" data-size="medium"></div>
+        <p class="im-coder-copy">
+        Made with <span class="im-coder-♥">♥</span> by <a href="http://fellipe.com">Davidson Fellipe</a>
+        </p>
+      </footer>
+    </section>
+    <div id="fb-root"></div>
+    <script src='assets/js/jquery.min.js'></script>
+    <script src='assets/js/script.js'></script>
+    <script>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-2123552-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=641581105882525&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </body>
+</html>

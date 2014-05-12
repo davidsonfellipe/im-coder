@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> Davidson Fellipe, I'm Front-end Engineer</title>
+    
+    <meta name="author" content="Davidson Fellipe">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <!-- General -->
+    <link rel="canonical" href="http://fellipe.com">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content=" / Davidson Fellipe">
+    <meta property="og:site_name" content="Davidson Fellipe">
+    <meta property="og:url" content="http://fellipe.com">
+    <meta property="og:image" content="http://fellipe.com/assets/img/opengraph.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content=" from website's Davidson Fellipe">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome-ie7.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/fellipecom/css/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+
+  <body>
+    <div class='container'>
+    <header class='aboutme'>
+        <span class='hi'>hi!</span>
+        <h2 class='name'>i'm Davidson Fellipe</h2>
+        <h3 class='job'>
+            front-end engineer at <a href='http://opensource.globo.com'>globo.com</a>,
+            m.sc. student at PUC-Rio,
+            co-founder at <a href='http://braziljs.org'>braziljs.org</a>
+            <br />
+            Conferences organizer at <a href='http://frontinbh.com.br'>frontinbh</a>,
+                    <a href='http://pernambucojs.com'>pernambuco.js</a>,
+                    <a href='http://riojs.org'>rio.js</a>
+            <br />
+            lives in rio de janeiro
+        </h3>
+    </header>
+
+    <ul class='button-list'>
+        <li class='button-list-item'>
+            <a class='button icon-rss' href='/blog/'>blog</a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-bullhorn' href='/talks/'>
+                <span class='label'>talks</span>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-bullhorn' href='/projects/'>
+                <span class='label'>projects</span>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-github' href='https://github.com/davidsonfellipe'>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-linkedin' href='http://www.linkedin.com/in/fellipe'>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-facebook' href='https://www.facebook.com/fellipe'>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-twitter' href='https://twitter.com/davidsonfellipe' rel='me'>
+            </a>
+        </li>
+        <li class='button-list-item'>
+            <a class='button icon-google-plus' href='https://plus.google.com/+DavidsonFellipe/posts?rel=author'>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+    <footer class="footer">
+        Made by Davidson Fellipe with ♥ since 2007
+    </footer>
+    
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2123552-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</body>
+</html>
+
