@@ -106,9 +106,11 @@ ImCoder.prototype.addText = function () {
                 .substring(0, words.length - 1));
         }
 
+        if(this.index <= this.lettersByTyping) {
+            $('#im-coder-editor').addClass('im-coder-editing');
+        }
+
         this.index += this.lettersByTyping;
-        
-        var isFirstLine = this.index <= this.lettersByTyping ? '' : '<br>';
 
         var text = $('<div/>')
             .text(this.text.substring(0, this.index))
@@ -122,10 +124,6 @@ ImCoder.prototype.addText = function () {
             text.replace(newLine, this.lineBreak)
             .replace(newTab, this.tab)
         );
-
-        if(isFirstLine) {
-            $('#im-coder-editor').addClass('im-coder-editing');
-        }
 
         window.scrollBy(0, 150);
     }
