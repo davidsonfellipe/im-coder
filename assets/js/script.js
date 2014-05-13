@@ -5,6 +5,7 @@
  *  Made by Davidson Fellipe - fellipe.com
  *  Under MIT License
  */
+var codeLang;
 
 var ImCoder = function (config) {
 
@@ -33,9 +34,8 @@ ImCoder.prototype.reset = function () {
 
     this.index = 0;
 
-    $('#im-coder-editor').html('<span class="im-coder-line"></span>');
-
-    $('#im-coder-editor').removeClass('im-coder-editing');
+    $('#im-coder-editor').empty()
+                         .removeClass('im-coder-editing');
 
 };
 
@@ -57,9 +57,10 @@ ImCoder.prototype.bind = function () {
 
     $('.im-coder-lang').click(function() {
 
-            var lang = 'langs/' + $(this).text() + '.txt';
+            codeLang = $(this).text();
+            var langFile = 'langs/' + codeLang + '.txt';
 
-            $.get(lang, function(data) {
+            $.get(langFile, function(data) {
                 that.text = '\n' + data;
             });
 
@@ -92,34 +93,12 @@ ImCoder.prototype.content = function () {
 ImCoder.prototype.addText = function () {
     if (this.text) {
 
-        var words = this.content();
+        var codeChunk = this.text.substring(this.index - 3000, this.index),
+            highlighted = hljs.highlight(codeLang, codeChunk).value;
 
-        if (words.substring(words.length - 1, words.length) === '|') {
-            $('#im-coder-editor').html($('#im-coder-editor')
-                .html()
-                .substring(0, words.length - 1));
-        }
+        $('#im-coder-editor').html(highlighted);
 
-        this.index += this.lettersByTyping;
-        
-        var isFirstLine = this.index <= this.lettersByTyping ? '' : '<br>';
-
-        var text = $('<div/>')
-            .text(this.text.substring(0, this.index))
-            .html();
-
-        var newLine = new RegExp('\n', 'g');
-
-        var newTab = new RegExp('\\t', 'g');
-
-        $('#im-coder-editor').html(
-            text.replace(newLine, isFirstLine + '<span class="im-coder-line"></span>')
-            .replace(newTab, '&nbsp;&nbsp;')
-        );
-
-        if(isFirstLine) {
-            $('#im-coder-editor').addClass('im-coder-editing');
-        }
+        this.index += 5;
 
         window.scrollBy(0, 150);
     }
