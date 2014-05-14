@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/davidsonfellipe/im-coder/issues"
   },
-  "homepage": "https://github.com/davidsonfellipe/im-coder"
+  "homepage": "https://github.com/davidsonfellipe/im-coder",
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
 }
