@@ -5,10 +5,10 @@
  *  Made by Davidson Fellipe - fellipe.com
  *  Under MIT License
  */
-
 (function ($) {
-
     'use strict';
+
+    var codeLang;
 
     var ImCoder = function () {
 
@@ -35,7 +35,6 @@
     };
 
     ImCoder.prototype.reset = function () {
-
         this.text = null;
 
         this.index = 0;
@@ -68,19 +67,15 @@
         );
 
         $('.im-coder-lang').click(function () {
+            codeLang = $(this).text();
+            var lang = 'langs/' + codeLang + '.txt';
 
-                var lang = 'langs/' + $(this).text() + '.txt';
-
-                $.get(lang, function (data) {
-
-                    that.text = that.setText(data);
-
-                });
-
-                $('#im-coder-sidebar').hide();
-
-            }
-        );
+            $.get(lang, function(data) {
+                that.text = that.setText(data);
+            });
+            
+            $('#im-coder-sidebar').hide();
+        });
 
         $('.im-coder-paste').bind('paste blur', function () {
 
@@ -99,7 +94,7 @@
     };
 
     ImCoder.prototype.setText = function (text)  {
-        return this.text = '\n' + text;
+        return ( this.text = '\n' + text );
     };
 
     ImCoder.prototype.content = function () {
@@ -130,11 +125,12 @@
             var newLine = new RegExp('\n', 'g');
 
             var newTab = new RegExp('\\t', 'g');
+            var codeChunk = text.replace(newLine, this.lineBreak)
+                                .replace(newTab, this.tab);
 
-            $('#im-coder-editor').html(
-                text.replace(newLine, this.lineBreak)
-                .replace(newTab, this.tab)
-            );
+            var highlighted = hljs.highlight(codeLang, codeChunk).value;
+
+            $('#im-coder-editor').html(highlighted);
 
             window.scrollBy(0, 150);
         }
