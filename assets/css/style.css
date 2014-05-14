@@ -10,9 +10,9 @@ a {
   font-family: 'Source Code Pro';
   font-size: 15px;
   height: 100%;
-  width: 100%;
   margin-top: 10px;
   text-decoration: none;
+  width: 100%;
 }
 
 a:hover {
@@ -20,11 +20,10 @@ a:hover {
 }
 
 .im-coder-logo {
-  height: 100px;
-  margin: 0 auto;
   background: url('../img/logo.png') no-repeat 0 0;
+  height: 100px;
+  margin: 50px auto;
   width: 400px;
-  margin-top: 50px;
 }
 
 .im-coder-slogan {
@@ -42,16 +41,16 @@ a:hover {
 }
 
 .im-coder-editor:after {
+  border-bottom: 18px solid rgba(255, 255, 255, .1);
+  bottom: 1px;
   content: " ";
   color: gray;
-  position: absolute;
-  z-index: 2;
-  bottom: 1px;
-  left: 0;
   display: inline-block;
-  text-align: right;
+  left: 0;
   min-width: 100%;
-  border-bottom: 18px solid rgba(255, 255, 255, .1);
+  position: absolute;
+  text-align: right;
+  z-index: 2;
 }
 
 .im-coder-line {
@@ -64,45 +63,45 @@ a:hover {
   color: rgba(255, 190, 0, .6);
   display: inline-block;
   text-align: right;
-  min-width: 40px;
   margin-right: 20px;
+  min-width: 40px;
 }
 
 .im-coder-sidebar {
   color: rgba(255, 255, 255, .9);
   background: #272822;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
   display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
   text-align: center;
+  top: 0;
+  z-index: 2;
 }
 
 .im-coder-langs {
-  margin-top: 80px;
   list-style: none;
+  margin-top: 80px;
   width: 100%;
 }
 
 .im-coder-lang {
-  font-size: 16px;
-  white-space: nowrap;
-  text-align: center;
-  width: 100px;
-  margin: 0 0 15px 0px;
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px;
-  cursor: pointer;
   background: #cc4436;
-  color: #fff;
-  position: relative;
   border-radius: 2px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 0 15px 0px;
   opacity: .8;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+  white-space: nowrap;
+  width: 100px;
 }
 
 .im-coder-lang:hover {
@@ -116,16 +115,17 @@ a:hover {
   font-family: 'Source Code Pro';
   font-size: 15px;
   height: 100px;
-  width: 610px;
   margin-top: 10px;
   padding: 10px;
-  text-decoration: none;
   resize: none;
   text-align: center;
+  text-decoration: none;
+  width: 610px;
 }
 
 .im-coder-footer {
   margin: 50px 10px 10px 10px;
+  max-height: 70px;
   text-align: center;
 }
 
@@ -135,8 +135,8 @@ a:hover {
 }
 
 .im-coder-copy {
-  display: block;
   clear: both;
+  display: block;
 }
 
 .im-coder-♥ {
