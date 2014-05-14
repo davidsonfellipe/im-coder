@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #cc4436;
+}
+
 .im-coder-logo {
   height: 100px;
   margin: 0 auto;
@@ -26,7 +30,6 @@ a {
 .im-coder-slogan {
   margin-top: 20px;
 }
-
 
 .im-coder-editor {
   counter-reset: listing;
@@ -94,11 +97,11 @@ a {
   text-decoration: none;
   padding: 10px;
   cursor: pointer;
-  background: #CC4436;
+  background: #cc4436;
   color: #fff;
   position: relative;
   border-radius: 2px;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   opacity: .8;
 }
 
