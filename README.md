@@ -23,7 +23,7 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
  * 2 spaces
  * Properties in alphabetical order
 * JS
- * 2 spaces
+ * 4 spaces
  * Code with JSHint - 0 erros
 
 #### Author
