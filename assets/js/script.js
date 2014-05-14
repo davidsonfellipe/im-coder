@@ -1,4 +1,4 @@
-/*global $:false, window:false, console:false */
+/*global jQuery:false, window:false */
 /*
  *  ImCoder
  *
@@ -6,149 +6,158 @@
  *  Under MIT License
  */
 
-var ImCoder = function (config) {
+(function ($) {
 
-    "use strict";
+    'use strict';
 
-    this.text = null;
+    var ImCoder = function () {
 
-    this.index = 0;
 
-    this.lettersByTyping = 5;
+        this.text = null;
 
-    this.lineBreak = '<br><span class="im-coder-line"></span>';
-    this.tab = '&nbsp;&nbsp;';
+        this.index = 0;
 
-    var that = this;
+        this.lettersByTyping = 5;
 
-    this.reset();
+        this.lineBreak = '<br><span class="im-coder-line"></span>';
 
-    setInterval(function() {
-        that.blinkCursor();
-    }, 500);
+        this.tab = '&nbsp;&nbsp;';
 
-    this.bind();
-};
+        var that = this;
 
-ImCoder.prototype.reset = function () {
+        this.reset();
 
-    this.text = null;
+        setInterval(function () {
+            that.blinkCursor();
+        }, 500);
 
-    this.index = 0;
+        this.bind();
+    };
 
-    $('#im-coder-editor').html('<span class="im-coder-line"></span>');
+    ImCoder.prototype.reset = function () {
 
-    $('#im-coder-editor').removeClass('im-coder-editing');
+        this.text = null;
 
-};
+        this.index = 0;
 
-ImCoder.prototype.bind = function () {
+        $('#im-coder-editor').html('<span class="im-coder-line"></span>');
 
-    var that = this;
+        $('#im-coder-editor').removeClass('im-coder-editing');
 
-    $(document).keydown(
-        function(event) {
+    };
 
-            if(event.which !== 27){
-                that.addText(event);
-            } else {
-                $('#im-coder-sidebar').show();
-                that.reset();
+    ImCoder.prototype.bind = function () {
+
+        var that = this;
+
+        $(document).keydown(
+            function (event) {
+
+                if (event.which !== 27) {
+
+                    that.addText(event);
+
+                } else {
+
+                    $('#im-coder-sidebar').show();
+
+                    that.reset();
+
+                }
             }
+        );
+
+        $('.im-coder-lang').click(function () {
+
+                var lang = 'langs/' + $(this).text() + '.txt';
+
+                $.get(lang, function (data) {
+
+                    that.text = that.setText(data);
+
+                });
+
+                $('#im-coder-sidebar').hide();
+
+            }
+        );
+
+        $('.im-coder-paste').bind('paste blur', function () {
+
+            var element = this;
+
+            setTimeout(function () {
+
+                that.text = that.setText($(element).val());
+
+                $('#im-coder-sidebar').fadeOut('slow');
+
+            }, 100);
+
+        });
+
+    };
+
+    ImCoder.prototype.setText = function (text)  {
+        return this.text = '\n' + text;
+    };
+
+    ImCoder.prototype.content = function () {
+        return $('#im-coder-editor').html();
+    };
+
+    ImCoder.prototype.addText = function () {
+        if (this.text) {
+
+            var words = this.content();
+
+            if (words.substring(words.length - 1, words.length) === '|') {
+                $('#im-coder-editor').html($('#im-coder-editor')
+                    .html()
+                    .substring(0, words.length - 1));
+            }
+
+            if (this.index <= this.lettersByTyping) {
+                $('#im-coder-editor').addClass('im-coder-editing');
+            }
+
+            this.index += this.lettersByTyping;
+
+            var text = $('<div/>')
+                .text(this.text.substring(0, this.index))
+                .html();
+
+            var newLine = new RegExp('\n', 'g');
+
+            var newTab = new RegExp('\\t', 'g');
+
+            $('#im-coder-editor').html(
+                text.replace(newLine, this.lineBreak)
+                .replace(newTab, this.tab)
+            );
+
+            window.scrollBy(0, 150);
         }
-    );
+    };
 
-    $('.im-coder-lang').click(function() {
-
-            var lang = 'langs/' + $(this).text() + '.txt';
-
-            $.get(lang, function(data) {
-                that.text = that.setText(data);
-            });
-
-            $('#im-coder-sidebar').hide();
-
-        }
-    );
-
-    $('.im-coder-paste').bind('paste blur', function() {
-
-          var element = this;
-
-          setTimeout(function () {
-
-            that.text = that.setText($(element).val());
-
-            $('#im-coder-sidebar').fadeOut('slow');
-
-          }, 100);
-
-    });
-
-};
-
-ImCoder.prototype.setText = function (text)  {
-    return this.text = '\n' + text;
-};
-
-ImCoder.prototype.content = function () {
-    return $('#im-coder-editor').html();
-};
-
-ImCoder.prototype.addText = function () {
-    if (this.text) {
+    ImCoder.prototype.blinkCursor = function () {
 
         var words = this.content();
 
         if (words.substring(words.length - 1, words.length) === '|') {
+
             $('#im-coder-editor').html($('#im-coder-editor')
                 .html()
                 .substring(0, words.length - 1));
+
+        } else {
+
+            $('#im-coder-editor').append('|');
+
         }
 
-        if(this.index <= this.lettersByTyping) {
-            $('#im-coder-editor').addClass('im-coder-editing');
-        }
-
-        this.index += this.lettersByTyping;
-
-        var text = $('<div/>')
-            .text(this.text.substring(0, this.index))
-            .html();
-
-        var newLine = new RegExp('\n', 'g');
-
-        var newTab = new RegExp('\\t', 'g');
-
-        $('#im-coder-editor').html(
-            text.replace(newLine, this.lineBreak)
-            .replace(newTab, this.tab)
-        );
-
-        window.scrollBy(0, 150);
-    }
-};
-
-ImCoder.prototype.blinkCursor = function () {
-
-    var words = this.content();
-
-    if (words.substring(words.length - 1, words.length) === '|') {
-
-        $('#im-coder-editor').html($('#im-coder-editor')
-            .html()
-            .substring(0, words.length - 1));
-
-    } else {
-
-        $('#im-coder-editor').append('|');
-
-    }
-
-};
-
-$(function($){
+    };
 
     new ImCoder();
 
-});
+})(jQuery);
