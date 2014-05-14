@@ -11,8 +11,6 @@
     var codeLang;
 
     var ImCoder = function () {
-
-
         this.text = null;
 
         this.index = 0;
@@ -20,8 +18,6 @@
         this.lettersByTyping = 5;
 
         this.lineBreak = '<br><span class="im-coder-line"></span>';
-
-        this.tab = '&nbsp;&nbsp;';
 
         var that = this;
 
@@ -118,19 +114,13 @@
 
             this.index += this.lettersByTyping;
 
-            var text = $('<div/>')
-                .text(this.text.substring(0, this.index))
-                .html();
+            var text = this.text.substring(0,this.index);
 
-            var newLine = new RegExp('\n', 'g');
+            var highlighted = hljs.highlight(codeLang, text).value;
 
-            var newTab = new RegExp('\\t', 'g');
-            var codeChunk = text.replace(newLine, this.lineBreak)
-                                .replace(newTab, this.tab);
+            var codeChunk = highlighted.replace(/\n/g, this.lineBreak);
 
-            var highlighted = hljs.highlight(codeLang, codeChunk).value;
-
-            $('#im-coder-editor').html(highlighted);
+            $('#im-coder-editor').html(codeChunk);
 
             window.scrollBy(0, 150);
         }
