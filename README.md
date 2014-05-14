@@ -20,11 +20,11 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
 ## Coding conventions
 
 * CSS
-** 2 spaces
-** Properties in alphabetical order
+ * 2 spaces
+ * Properties in alphabetical order
 * JS
-** 2 spaces
-** Code with JSHint - 0 erros
+ * 2 spaces
+ * Code with JSHint - 0 erros
 
 #### Author
 
