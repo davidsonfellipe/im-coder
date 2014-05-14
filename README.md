@@ -1,11 +1,30 @@
-
 ========
-
 # im-coder
+_Create fake codes for classes, movies, tv shows... Or be a troll using for live coding at talks ;)_
 
 # Demo
 
 [http://fellipe.com/apps/im-coder/](http://fellipe.com/apps/im-coder/)
+
+## Supports
+
+* c
+* css
+* go
+* html
+* js
+* perl
+* php
+* python
+
+## Coding conventions
+
+* CSS
+** 2 spaces
+** Properties in alphabetical order
+* JS
+** 2 spaces
+** Code with JSHint - 0 erros
 
 #### Author
 
@@ -15,7 +34,7 @@
 
 #### Contribute
 
-Anyone and everyone is welcome to contribute.
+Anyone and everyone is welcome to contribute. See some [developers](https://github.com/davidsonfellipe/im-coder/graphs/contributors) that helped.
 
 ## License
 
