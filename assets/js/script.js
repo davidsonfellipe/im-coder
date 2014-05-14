@@ -99,7 +99,7 @@
     };
 
     ImCoder.prototype.setText = function (text)  {
-        return this.text = '\n' + text;
+        return ( this.text = '\n' + text );
     };
 
     ImCoder.prototype.content = function () {
