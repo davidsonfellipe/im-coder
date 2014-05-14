@@ -5,14 +5,12 @@
  *  Made by Davidson Fellipe - fellipe.com
  *  Under MIT License
  */
-
 (function ($) {
-
     'use strict';
 
+    var codeLang;
+
     var ImCoder = function () {
-
-
         this.text = null;
 
         this.index = 0;
@@ -20,8 +18,6 @@
         this.lettersByTyping = 5;
 
         this.lineBreak = '<br><span class="im-coder-line"></span>';
-
-        this.tab = '&nbsp;&nbsp;';
 
         var that = this;
 
@@ -35,7 +31,6 @@
     };
 
     ImCoder.prototype.reset = function () {
-
         this.text = null;
 
         this.index = 0;
@@ -68,19 +63,15 @@
         );
 
         $('.im-coder-lang').click(function () {
+            codeLang = $(this).text();
+            var lang = 'langs/' + codeLang + '.txt';
 
-                var lang = 'langs/' + $(this).text() + '.txt';
-
-                $.get(lang, function (data) {
-
-                    that.text = that.setText(data);
-
-                });
-
-                $('#im-coder-sidebar').hide();
-
-            }
-        );
+            $.get(lang, function(data) {
+                that.text = that.setText(data);
+            });
+            
+            $('#im-coder-sidebar').hide();
+        });
 
         $('.im-coder-paste').bind('paste blur', function () {
 
@@ -123,18 +114,13 @@
 
             this.index += this.lettersByTyping;
 
-            var text = $('<div/>')
-                .text(this.text.substring(0, this.index))
-                .html();
+            var text = this.text.substring(0,this.index);
 
-            var newLine = new RegExp('\n', 'g');
+            var highlighted = hljs.highlight(codeLang, text).value;
 
-            var newTab = new RegExp('\\t', 'g');
+            var codeChunk = highlighted.replace(/\n/g, this.lineBreak);
 
-            $('#im-coder-editor').html(
-                text.replace(newLine, this.lineBreak)
-                .replace(newTab, this.tab)
-            );
+            $('#im-coder-editor').html(codeChunk);
 
             window.scrollBy(0, 150);
         }
