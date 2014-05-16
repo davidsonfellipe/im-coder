@@ -1,0 +1,588 @@
+import java.awt.*;    
+import java.util.*;    
+import javax.swing.*;    
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.SystemColor;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;   
+
+public class WindowListner implements ActionListener {
+  
+  private Janela janela;
+  private JMenuItem item;
+  private JFileChooser chooser;
+  
+  public Janela Lister(){
+    return janela;
+    
+  }
+  
+  public WindowListner(JMenuItem item ,  Janela janela){
+    this.item = item;
+    this.janela = janela;
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    JTextArea texto = janela.getTexto();
+    JTextField status = janela.getStatus();
+    
+    if(e.getSource() == item){
+      String label = item.getText();
+      if(label.equals("Novo")){
+        int opcao = JOptionPane.showConfirmDialog(null,"tem certeza que deseja criar um novo sem salvar?","mensagem" , JOptionPane.YES_NO_OPTION);
+        if(opcao == 0){
+          texto.setText("");
+        }else{
+          status.setText(item.getText());
+          chooser = new JFileChooser();
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+          chooser.addChoosableFileFilter(filter);  
+          chooser.setAcceptAllFileFilterUsed(false);  
+          int opcao1 = chooser.showSaveDialog(janela);
+          
+          if(opcao1 == JFileChooser.APPROVE_OPTION){
+            salvarArquivo(chooser.getSelectedFile());
+          }
+          
+        }
+        
+        
+      }
+      if(item.getText().equals("Abrir")){
+        status.setText("abrir");
+        chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+        chooser.addChoosableFileFilter(filter);  
+        chooser.setAcceptAllFileFilterUsed(false); 
+        int opcao = chooser.showOpenDialog(janela);
+        
+        if(opcao == JFileChooser.APPROVE_OPTION){
+          String txt = lerArquivo(chooser.getSelectedFile());
+          texto.setText(txt);
+          texto.setCaretPosition(0);
+        }
+      }
+      
+      if(label.equals("Salvar")){
+          status.setText(item.getText());
+          chooser = new JFileChooser();
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+          chooser.addChoosableFileFilter(filter);  
+          chooser.setAcceptAllFileFilterUsed(false); 
+          int opcao = chooser.showSaveDialog(janela);
+          
+           JFileChooser chooser = new JFileChooser();
+              int returnVal = chooser.showOpenDialog(item);
+              if(returnVal == JFileChooser.APPROVE_OPTION) {
+                 System.out.println("You chose to open this file: " +
+                      chooser.getSelectedFile().getName());
+              }
+           
+          
+          if(opcao == JFileChooser.APPROVE_OPTION){
+            salvarArquivo(chooser.getSelectedFile());
+          }
+        };
+    }
+  }
+  
+
+  
+  private String lerArquivo(File arq){
+    String conteudo = " ";
+    
+      
+    try{
+      FileInputStream fis = new FileInputStream(arq);
+      byte[] arquivo = new byte[fis.available()];
+      fis.read(arquivo);
+      fis.close();
+      conteudo = new String(arquivo , Charset.forName("UTF-8"));
+    }catch(IOException ee){
+      System.out.println(ee.getMessage());
+    }
+    
+    return conteudo;
+  }
+  
+  private void salvarArquivo(File arq){
+    try{
+      FileOutputStream fos = new FileOutputStream(arq);
+      String txt = janela.getTexto().getText();
+      fos.write(txt.getBytes());
+      fos.close();
+    }catch(IOException ee){
+      System.out.println(ee.getMessage());
+    }
+  }
+  
+}
+
+
+public class Janela extends JFrame {
+  
+  private JMenuBar menu;
+  private JMenu arquivo;
+  private JMenuItem novo , abrir , salvar , fechar ;
+  private JPanel painel;
+  private JTextArea texto;
+  private JScrollPane scroll;
+  private JTextField status;
+  
+  public JTextArea getTexto(){
+    return texto;
+  }
+  
+  public JTextField getStatus(){
+    return status;
+  }
+  
+  public Janela(){
+    super("JNotepad");
+    
+    montarComponentes();
+  }
+  
+  private void montarComponentes(){
+    Container c = getContentPane();
+    c.setLayout(new BorderLayout());
+    montarMenu();
+    painel = new JPanel();
+    texto = new JTextArea("" , 45 , 53);
+    texto.setLineWrap(true);
+    texto.setWrapStyleWord(true);
+    
+    scroll = new JScrollPane(texto);
+    scroll.setWheelScrollingEnabled(true);
+    painel.add(scroll);
+    
+    status = new JTextField("Barra de status");
+    status.setBackground(SystemColor.control);
+    status.setEditable(false);
+    add(menu , BorderLayout.NORTH);
+    add(painel , BorderLayout.CENTER);
+    add(status , BorderLayout.SOUTH);
+
+  }
+  
+  private void montarMenu(){
+    menu = new JMenuBar();
+    arquivo = new JMenu("Arquivo");
+    novo  = new JMenuItem("Novo");
+    abrir   = new JMenuItem("Abrir");
+    salvar  = new JMenuItem("Salvar");
+    fechar  = new JMenuItem("Fechar");
+    
+    arquivo.add(novo);
+    arquivo.add(abrir);
+    arquivo.add(salvar);
+    arquivo.addSeparator();
+    arquivo.add(fechar);
+    
+    novo.addActionListener  (new WindowListner(novo , this));
+    abrir.addActionListener (new WindowListner(abrir , this));
+    salvar.addActionListener(new WindowListner(salvar , this));
+    fechar.addActionListener(new WindowListner(fechar , this));    
+    menu.add(arquivo);
+  }
+  
+  public void show(){
+    setSize(600,800);
+    setLocation(600,100);
+    setVisible(true);
+    setResizable(false);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+  }
+  
+}
+
+public class Heroi extends Sprite{
+
+  boolean LEFT, RIGHT,UP,DOWN;
+  float oldX,oldY;
+  public Heroi(float posX, float posY, int velX, int velY, Color cor, float largura, float altura){
+    this.posX = posX;
+    this.posY = posY;
+    this.velX = velX;
+    this.velY = velY;
+    this.cor = cor;
+    this.vivo = true;
+    this.largura=largura;
+    this.altura=altura;
+  }
+  
+  @Override
+  void simulaSe(long DiffTime) {
+    if(RIGHT){
+      posX+=velX*DiffTime/1000f;
+     
+    }
+    
+    if(LEFT){
+      posX-=velX*DiffTime/1000f;
+    
+    }
+    
+    if(UP){
+      posY-=velY*DiffTime/1000f;
+    }
+    
+    if(DOWN){
+      posY+=velY*DiffTime/1000f;
+    }
+    
+    
+    if(posX+largura/2 >=GamePanel.PWIDTH){
+      posX = oldX;
+    }else if(posX-largura/2<=0){
+      posX = oldX;
+    }
+    
+    if(posY+altura/2 >= GamePanel.PHEIGHT){
+      posY = oldY;
+    }else if(posY-altura/2 <=0){
+      posY = oldY;
+    }
+   
+  }
+
+  @Override
+  void desenhaSe(Graphics2D dbg) {
+    dbg.setColor(this.cor);
+    dbg.fillRect( (int)posX, (int)posY,20, 20);
+    
+    
+  }  
+}
+
+public class Missil {
+  float posX;
+  float posY;
+  Color cor;
+  int vel;
+  boolean vivo;
+
+  public Missil(float posX, float posY, Color cor, int vel) {
+    this.posX = posX;
+    this.posY = posY;
+    this.cor = cor;
+    this.vel = vel;
+    vivo = true;
+
+    // System.out.println("chamou isso");
+  }
+
+  void simulaSe(long DiffTime) {
+    posX += vel * DiffTime / 1000f;
+
+    if (posX > GamePanel.PWIDTH) {
+      vivo = false;
+
+    }
+
+  }
+
+  void desenhaSe(Graphics2D dbg) {
+
+
+    dbg.setColor(Color.red);
+    dbg.fillOval((int) posX - 20, (int) posY-4, 60, 20);
+    dbg.fillOval((int) posX - 20, (int) posY+4, 60, 20);
+  
+    if(GamePanel.rnd.nextInt(2)==1){
+      dbg.setColor(Color.yellow);
+      dbg.fillOval((int) posX - 34, (int) posY-5, 60, 20);
+      dbg.fillOval((int) posX - 34, (int) posY+6, 60, 20);
+    }else{
+      dbg.setColor(Color.yellow);
+      dbg.fillOval((int) posX - 33, (int) posY-6, 60, 20);
+      dbg.fillOval((int) posX - 33, (int) posY+8, 60, 20);
+    
+    }
+    
+    
+    dbg.setColor(Color.red);
+    dbg.fillOval((int) posX + 30, (int) posY, 60, 20);
+
+    dbg.setColor(cor);
+    dbg.fillRect((int) posX, (int) posY, 60, 20);
+
+  }
+}
+
+public class GamePanel extends JPanel implements Runnable
+{
+static final int PWIDTH = 640;
+static final int PHEIGHT = 480;
+private Thread animator;
+private boolean running = false;
+private BufferedImage dbImage;
+private Graphics2D dbg;
+int FPS,SFPS;
+int fpscount;
+
+Random rnd = new Random();
+
+boolean LEFT, RIGHT,UP,DOWN, SPACE;
+
+
+int MouseX,MouseY;
+
+
+Heroi meuHeroi = new Heroi((int)(PWIDTH/2),
+    (int)(PHEIGHT/2), 20, 20, Color.white);
+
+Tiro tirinho;
+public GamePanel()
+{
+
+  setBackground(Color.white);
+  setPreferredSize( new Dimension(PWIDTH, PHEIGHT));
+
+  // create game components
+  setFocusable(true);
+
+  requestFocus(); // JPanel now receives key events
+  
+  if (dbImage == null){
+    dbImage = new BufferedImage(PWIDTH, PHEIGHT,BufferedImage.TYPE_INT_ARGB);
+    if (dbImage == null) {
+      System.out.println("dbImage is null");
+      return;
+    }else{
+      dbg = (Graphics2D)dbImage.getGraphics();
+    }
+  } 
+  
+  
+  // Adiciona um Key Listner
+  addKeyListener( new KeyAdapter() {
+    public void keyPressed(KeyEvent e)
+      { 
+        int keyCode = e.getKeyCode();
+        
+        if(keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A){
+          LEFT = true;
+        }
+        if(keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D){
+          RIGHT = true;
+        }
+        if(keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W){
+          UP = true;
+        }
+        if(keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S){
+          DOWN = true;
+        }
+        if(keyCode == KeyEvent.VK_SPACE){
+          SPACE = true;
+        }
+      }
+    @Override
+      public void keyReleased(KeyEvent e ) {
+        int keyCode = e.getKeyCode();
+        
+        if(keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A){
+          LEFT = false;
+        }
+        if(keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D){
+          RIGHT = false;
+        }
+        if(keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W){
+          UP = false;
+        }
+        if(keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S){
+          DOWN = false;
+        } 
+        if(keyCode == KeyEvent.VK_SPACE){
+          SPACE = false;
+        }
+      }
+  });
+  
+  addMouseMotionListener(new MouseMotionListener() {
+    
+    @Override
+    public void mouseMoved(MouseEvent e) {
+      // TODO Auto-generated method stub
+      MouseX = e.getX();
+      MouseY = e.getY();
+    }
+    
+    @Override
+    public void mouseDragged(MouseEvent e) {
+      // TODO Auto-generated method stub
+      MouseX = e.getX();
+      MouseY = e.getY();
+    }
+  });
+  
+  
+  
+  addMouseListener(new MouseListener() {
+    
+    @Override
+    public void mouseReleased(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+  });
+  
+  
+} // end of GamePanel()
+
+public void addNotify()
+{
+  super.addNotify(); // creates the peer
+  startGame(); // start the thread
+}
+
+private void startGame()
+// initialise and start the thread
+{
+  if (animator == null || !running) {
+    animator = new Thread(this);
+    animator.start();
+  }
+} // end of startGame()
+
+public void stopGame()
+// called by the user to stop execution
+{ running = false; }
+
+
+public void run()
+/* Repeatedly update, render, sleep */
+{
+  running = true;
+  
+  long DiffTime,TempoAnterior;
+  
+  int segundo = 0;
+  DiffTime = 0;
+  TempoAnterior = System.currentTimeMillis();
+  
+  while(running) {
+  
+    gameUpdate(DiffTime); // game state is updated
+    gameRender(); // render to a buffer
+    paintImmediately(0, 0, PWIDTH, PHEIGHT); // paint with the buffer
+  
+    try {
+      Thread.sleep(2); // sleep a bit
+    } 
+    catch(InterruptedException ex){}
+    
+    DiffTime = System.currentTimeMillis() - TempoAnterior;
+    TempoAnterior = System.currentTimeMillis();
+      
+    if(segundo!=((int)(TempoAnterior/1000))){
+      FPS = SFPS;
+      SFPS = 1;
+      segundo = ((int)(TempoAnterior/1000));
+    }else{
+      SFPS++;
+    }
+  
+  }
+System.exit(0); // so enclosing JFrame/JApplet exits
+} // end of run()
+
+int timerfps = 0;
+private void gameUpdate(long DiffTime)
+{ 
+
+  meuHeroi.DOWN = DOWN;
+  meuHeroi.UP = UP;
+  meuHeroi.LEFT = LEFT;
+  meuHeroi.RIGHT = RIGHT;
+  
+  meuHeroi.simulaSe(DiffTime);
+ 
+  // fazer o tiro com um ArrayList <<<< estudar :)
+  
+  if(SPACE){
+    tirinho = new Tiro(meuHeroi.posX, meuHeroi.posY, Color.yellow, 500);
+  }
+  
+  if(tirinho!=null){
+    tirinho.simulaSe(DiffTime);
+  }
+}
+
+
+private void gameRender()
+// draw the current frame to an image buffer
+{
+  // clear the background
+  
+  //limpando meu buffer de imagem
+  dbg.setColor(Color.black);
+  dbg.fillRect (0, 0, PWIDTH, PHEIGHT);
+ 
+  meuHeroi.desenhaSe(dbg);
+  if(tirinho!=null){
+    tirinho.desenhaSe(dbg);
+  }
+  // senha dados na tela
+  dbg.setColor(Color.BLUE); 
+  dbg.drawString("FPS: "+FPS+" MouseX: "+MouseX+" MouseY: "+MouseY+" LEFT "+LEFT+" RIGHT "+RIGHT+" UP "+UP+" DOWN "+DOWN, 10, 10);  
+    
+}
+
+
+public void paintComponent(Graphics g)
+{
+  super.paintComponent(g);
+  if (dbImage != null)
+    g.drawImage(dbImage, 0, 0, null);
+}
+
+
+public static void main(String args[])
+{
+  GamePanel ttPanel = new GamePanel();
+
+  // create a JFrame to hold the timer test JPanel
+  JFrame app = new JFrame("Meu Primeiro Jogo");
+  app.getContentPane().add(ttPanel, BorderLayout.CENTER);
+  app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+  app.pack();
+  app.setResizable(false);  
+  app.setVisible(true);
+} // end of main()
+
+} // end of GamePanel class
