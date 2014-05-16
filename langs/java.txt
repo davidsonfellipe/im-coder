@@ -204,3 +204,385 @@ public class Janela extends JFrame {
   }
   
 }
+
+public class Heroi extends Sprite{
+
+  boolean LEFT, RIGHT,UP,DOWN;
+  float oldX,oldY;
+  public Heroi(float posX, float posY, int velX, int velY, Color cor, float largura, float altura){
+    this.posX = posX;
+    this.posY = posY;
+    this.velX = velX;
+    this.velY = velY;
+    this.cor = cor;
+    this.vivo = true;
+    this.largura=largura;
+    this.altura=altura;
+  }
+  
+  @Override
+  void simulaSe(long DiffTime) {
+    if(RIGHT){
+      posX+=velX*DiffTime/1000f;
+     
+    }
+    
+    if(LEFT){
+      posX-=velX*DiffTime/1000f;
+    
+    }
+    
+    if(UP){
+      posY-=velY*DiffTime/1000f;
+    }
+    
+    if(DOWN){
+      posY+=velY*DiffTime/1000f;
+    }
+    
+    
+    if(posX+largura/2 >=GamePanel.PWIDTH){
+      posX = oldX;
+    }else if(posX-largura/2<=0){
+      posX = oldX;
+    }
+    
+    if(posY+altura/2 >= GamePanel.PHEIGHT){
+      posY = oldY;
+    }else if(posY-altura/2 <=0){
+      posY = oldY;
+    }
+   
+  }
+
+  @Override
+  void desenhaSe(Graphics2D dbg) {
+    dbg.setColor(this.cor);
+    dbg.fillRect( (int)posX, (int)posY,20, 20);
+    
+    
+  }  
+}
+
+public class Missil {
+  float posX;
+  float posY;
+  Color cor;
+  int vel;
+  boolean vivo;
+
+  public Missil(float posX, float posY, Color cor, int vel) {
+    this.posX = posX;
+    this.posY = posY;
+    this.cor = cor;
+    this.vel = vel;
+    vivo = true;
+
+    // System.out.println("chamou isso");
+  }
+
+  void simulaSe(long DiffTime) {
+    posX += vel * DiffTime / 1000f;
+
+    if (posX > GamePanel.PWIDTH) {
+      vivo = false;
+
+    }
+
+  }
+
+  void desenhaSe(Graphics2D dbg) {
+
+
+    dbg.setColor(Color.red);
+    dbg.fillOval((int) posX - 20, (int) posY-4, 60, 20);
+    dbg.fillOval((int) posX - 20, (int) posY+4, 60, 20);
+  
+    if(GamePanel.rnd.nextInt(2)==1){
+      dbg.setColor(Color.yellow);
+      dbg.fillOval((int) posX - 34, (int) posY-5, 60, 20);
+      dbg.fillOval((int) posX - 34, (int) posY+6, 60, 20);
+    }else{
+      dbg.setColor(Color.yellow);
+      dbg.fillOval((int) posX - 33, (int) posY-6, 60, 20);
+      dbg.fillOval((int) posX - 33, (int) posY+8, 60, 20);
+    
+    }
+    
+    
+    dbg.setColor(Color.red);
+    dbg.fillOval((int) posX + 30, (int) posY, 60, 20);
+
+    dbg.setColor(cor);
+    dbg.fillRect((int) posX, (int) posY, 60, 20);
+
+  }
+}
+
+public class GamePanel extends JPanel implements Runnable
+{
+static final int PWIDTH = 640;
+static final int PHEIGHT = 480;
+private Thread animator;
+private boolean running = false;
+private BufferedImage dbImage;
+private Graphics2D dbg;
+int FPS,SFPS;
+int fpscount;
+
+Random rnd = new Random();
+
+boolean LEFT, RIGHT,UP,DOWN, SPACE;
+
+
+int MouseX,MouseY;
+
+
+Heroi meuHeroi = new Heroi((int)(PWIDTH/2),
+    (int)(PHEIGHT/2), 20, 20, Color.white);
+
+Tiro tirinho;
+public GamePanel()
+{
+
+  setBackground(Color.white);
+  setPreferredSize( new Dimension(PWIDTH, PHEIGHT));
+
+  // create game components
+  setFocusable(true);
+
+  requestFocus(); // JPanel now receives key events
+  
+  if (dbImage == null){
+    dbImage = new BufferedImage(PWIDTH, PHEIGHT,BufferedImage.TYPE_INT_ARGB);
+    if (dbImage == null) {
+      System.out.println("dbImage is null");
+      return;
+    }else{
+      dbg = (Graphics2D)dbImage.getGraphics();
+    }
+  } 
+  
+  
+  // Adiciona um Key Listner
+  addKeyListener( new KeyAdapter() {
+    public void keyPressed(KeyEvent e)
+      { 
+        int keyCode = e.getKeyCode();
+        
+        if(keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A){
+          LEFT = true;
+        }
+        if(keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D){
+          RIGHT = true;
+        }
+        if(keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W){
+          UP = true;
+        }
+        if(keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S){
+          DOWN = true;
+        }
+        if(keyCode == KeyEvent.VK_SPACE){
+          SPACE = true;
+        }
+      }
+    @Override
+      public void keyReleased(KeyEvent e ) {
+        int keyCode = e.getKeyCode();
+        
+        if(keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A){
+          LEFT = false;
+        }
+        if(keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D){
+          RIGHT = false;
+        }
+        if(keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W){
+          UP = false;
+        }
+        if(keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S){
+          DOWN = false;
+        } 
+        if(keyCode == KeyEvent.VK_SPACE){
+          SPACE = false;
+        }
+      }
+  });
+  
+  addMouseMotionListener(new MouseMotionListener() {
+    
+    @Override
+    public void mouseMoved(MouseEvent e) {
+      // TODO Auto-generated method stub
+      MouseX = e.getX();
+      MouseY = e.getY();
+    }
+    
+    @Override
+    public void mouseDragged(MouseEvent e) {
+      // TODO Auto-generated method stub
+      MouseX = e.getX();
+      MouseY = e.getY();
+    }
+  });
+  
+  
+  
+  addMouseListener(new MouseListener() {
+    
+    @Override
+    public void mouseReleased(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent arg0) {
+      // TODO Auto-generated method stub
+      
+    }
+  });
+  
+  
+} // end of GamePanel()
+
+public void addNotify()
+{
+  super.addNotify(); // creates the peer
+  startGame(); // start the thread
+}
+
+private void startGame()
+// initialise and start the thread
+{
+  if (animator == null || !running) {
+    animator = new Thread(this);
+    animator.start();
+  }
+} // end of startGame()
+
+public void stopGame()
+// called by the user to stop execution
+{ running = false; }
+
+
+public void run()
+/* Repeatedly update, render, sleep */
+{
+  running = true;
+  
+  long DiffTime,TempoAnterior;
+  
+  int segundo = 0;
+  DiffTime = 0;
+  TempoAnterior = System.currentTimeMillis();
+  
+  while(running) {
+  
+    gameUpdate(DiffTime); // game state is updated
+    gameRender(); // render to a buffer
+    paintImmediately(0, 0, PWIDTH, PHEIGHT); // paint with the buffer
+  
+    try {
+      Thread.sleep(2); // sleep a bit
+    } 
+    catch(InterruptedException ex){}
+    
+    DiffTime = System.currentTimeMillis() - TempoAnterior;
+    TempoAnterior = System.currentTimeMillis();
+      
+    if(segundo!=((int)(TempoAnterior/1000))){
+      FPS = SFPS;
+      SFPS = 1;
+      segundo = ((int)(TempoAnterior/1000));
+    }else{
+      SFPS++;
+    }
+  
+  }
+System.exit(0); // so enclosing JFrame/JApplet exits
+} // end of run()
+
+int timerfps = 0;
+private void gameUpdate(long DiffTime)
+{ 
+
+  meuHeroi.DOWN = DOWN;
+  meuHeroi.UP = UP;
+  meuHeroi.LEFT = LEFT;
+  meuHeroi.RIGHT = RIGHT;
+  
+  meuHeroi.simulaSe(DiffTime);
+ 
+  // fazer o tiro com um ArrayList <<<< estudar :)
+  
+  if(SPACE){
+    tirinho = new Tiro(meuHeroi.posX, meuHeroi.posY, Color.yellow, 500);
+  }
+  
+  if(tirinho!=null){
+    tirinho.simulaSe(DiffTime);
+  }
+}
+
+
+private void gameRender()
+// draw the current frame to an image buffer
+{
+  // clear the background
+  
+  //limpando meu buffer de imagem
+  dbg.setColor(Color.black);
+  dbg.fillRect (0, 0, PWIDTH, PHEIGHT);
+ 
+  meuHeroi.desenhaSe(dbg);
+  if(tirinho!=null){
+    tirinho.desenhaSe(dbg);
+  }
+  // senha dados na tela
+  dbg.setColor(Color.BLUE); 
+  dbg.drawString("FPS: "+FPS+" MouseX: "+MouseX+" MouseY: "+MouseY+" LEFT "+LEFT+" RIGHT "+RIGHT+" UP "+UP+" DOWN "+DOWN, 10, 10);  
+    
+}
+
+
+public void paintComponent(Graphics g)
+{
+  super.paintComponent(g);
+  if (dbImage != null)
+    g.drawImage(dbImage, 0, 0, null);
+}
+
+
+public static void main(String args[])
+{
+  GamePanel ttPanel = new GamePanel();
+
+  // create a JFrame to hold the timer test JPanel
+  JFrame app = new JFrame("Meu Primeiro Jogo");
+  app.getContentPane().add(ttPanel, BorderLayout.CENTER);
+  app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+  app.pack();
+  app.setResizable(false);  
+  app.setVisible(true);
+} // end of main()
+
+} // end of GamePanel class
