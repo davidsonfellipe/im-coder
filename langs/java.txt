@@ -1,0 +1,206 @@
+import java.awt.*;    
+import java.util.*;    
+import javax.swing.*;    
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.SystemColor;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;   
+
+public class WindowListner implements ActionListener {
+  
+  private Janela janela;
+  private JMenuItem item;
+  private JFileChooser chooser;
+  
+  public Janela Lister(){
+    return janela;
+    
+  }
+  
+  public WindowListner(JMenuItem item ,  Janela janela){
+    this.item = item;
+    this.janela = janela;
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    JTextArea texto = janela.getTexto();
+    JTextField status = janela.getStatus();
+    
+    if(e.getSource() == item){
+      String label = item.getText();
+      if(label.equals("Novo")){
+        int opcao = JOptionPane.showConfirmDialog(null,"tem certeza que deseja criar um novo sem salvar?","mensagem" , JOptionPane.YES_NO_OPTION);
+        if(opcao == 0){
+          texto.setText("");
+        }else{
+          status.setText(item.getText());
+          chooser = new JFileChooser();
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+          chooser.addChoosableFileFilter(filter);  
+          chooser.setAcceptAllFileFilterUsed(false);  
+          int opcao1 = chooser.showSaveDialog(janela);
+          
+          if(opcao1 == JFileChooser.APPROVE_OPTION){
+            salvarArquivo(chooser.getSelectedFile());
+          }
+          
+        }
+        
+        
+      }
+      if(item.getText().equals("Abrir")){
+        status.setText("abrir");
+        chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+        chooser.addChoosableFileFilter(filter);  
+        chooser.setAcceptAllFileFilterUsed(false); 
+        int opcao = chooser.showOpenDialog(janela);
+        
+        if(opcao == JFileChooser.APPROVE_OPTION){
+          String txt = lerArquivo(chooser.getSelectedFile());
+          texto.setText(txt);
+          texto.setCaretPosition(0);
+        }
+      }
+      
+      if(label.equals("Salvar")){
+          status.setText(item.getText());
+          chooser = new JFileChooser();
+          FileNameExtensionFilter filter = new FileNameExtensionFilter("arquivos txt", "txt");
+          chooser.addChoosableFileFilter(filter);  
+          chooser.setAcceptAllFileFilterUsed(false); 
+          int opcao = chooser.showSaveDialog(janela);
+          
+           JFileChooser chooser = new JFileChooser();
+              int returnVal = chooser.showOpenDialog(item);
+              if(returnVal == JFileChooser.APPROVE_OPTION) {
+                 System.out.println("You chose to open this file: " +
+                      chooser.getSelectedFile().getName());
+              }
+           
+          
+          if(opcao == JFileChooser.APPROVE_OPTION){
+            salvarArquivo(chooser.getSelectedFile());
+          }
+        };
+    }
+  }
+  
+
+  
+  private String lerArquivo(File arq){
+    String conteudo = " ";
+    
+      
+    try{
+      FileInputStream fis = new FileInputStream(arq);
+      byte[] arquivo = new byte[fis.available()];
+      fis.read(arquivo);
+      fis.close();
+      conteudo = new String(arquivo , Charset.forName("UTF-8"));
+    }catch(IOException ee){
+      System.out.println(ee.getMessage());
+    }
+    
+    return conteudo;
+  }
+  
+  private void salvarArquivo(File arq){
+    try{
+      FileOutputStream fos = new FileOutputStream(arq);
+      String txt = janela.getTexto().getText();
+      fos.write(txt.getBytes());
+      fos.close();
+    }catch(IOException ee){
+      System.out.println(ee.getMessage());
+    }
+  }
+  
+}
+
+
+public class Janela extends JFrame {
+  
+  private JMenuBar menu;
+  private JMenu arquivo;
+  private JMenuItem novo , abrir , salvar , fechar ;
+  private JPanel painel;
+  private JTextArea texto;
+  private JScrollPane scroll;
+  private JTextField status;
+  
+  public JTextArea getTexto(){
+    return texto;
+  }
+  
+  public JTextField getStatus(){
+    return status;
+  }
+  
+  public Janela(){
+    super("JNotepad");
+    
+    montarComponentes();
+  }
+  
+  private void montarComponentes(){
+    Container c = getContentPane();
+    c.setLayout(new BorderLayout());
+    montarMenu();
+    painel = new JPanel();
+    texto = new JTextArea("" , 45 , 53);
+    texto.setLineWrap(true);
+    texto.setWrapStyleWord(true);
+    
+    scroll = new JScrollPane(texto);
+    scroll.setWheelScrollingEnabled(true);
+    painel.add(scroll);
+    
+    status = new JTextField("Barra de status");
+    status.setBackground(SystemColor.control);
+    status.setEditable(false);
+    add(menu , BorderLayout.NORTH);
+    add(painel , BorderLayout.CENTER);
+    add(status , BorderLayout.SOUTH);
+
+  }
+  
+  private void montarMenu(){
+    menu = new JMenuBar();
+    arquivo = new JMenu("Arquivo");
+    novo  = new JMenuItem("Novo");
+    abrir   = new JMenuItem("Abrir");
+    salvar  = new JMenuItem("Salvar");
+    fechar  = new JMenuItem("Fechar");
+    
+    arquivo.add(novo);
+    arquivo.add(abrir);
+    arquivo.add(salvar);
+    arquivo.addSeparator();
+    arquivo.add(fechar);
+    
+    novo.addActionListener  (new WindowListner(novo , this));
+    abrir.addActionListener (new WindowListner(abrir , this));
+    salvar.addActionListener(new WindowListner(salvar , this));
+    fechar.addActionListener(new WindowListner(fechar , this));    
+    menu.add(arquivo);
+  }
+  
+  public void show(){
+    setSize(600,800);
+    setLocation(600,100);
+    setVisible(true);
+    setResizable(false);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+  }
+  
+}
