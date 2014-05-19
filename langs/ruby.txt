@@ -1,0 +1,61 @@
+class CPFValidations
+
+  class << self
+
+    def validate_cpf(str)
+      unless str =~ /^[0-9]+$/
+        raise ArgumentError, 'str should contain only numbers'
+      end
+
+      unless str.length == 11
+        raise ArgumentError, 'str should contain 11 numbers'
+      end
+
+      digits = []
+
+      str.chars do |c|
+        digits << c.to_i
+      end
+
+      self.validate_first_digit(digits) && self.validate_second_digit(digits)
+    end
+
+    protected
+
+      def validate_first_digit(digits)
+        verifier_digit = digits[9]
+        digits = digits[0..8]
+
+        arr = (2..10).to_a.reverse
+        total = 0
+
+        digits.each_index do |i|
+          total += digits[i] * arr[i]
+        end
+
+        rest = total % 11
+        rest = rest < 2 ? 0 : 11 - rest
+
+        rest == verifier_digit
+      end
+
+      def validate_second_digit(digits)
+        verifier_digit = digits[10]
+        digits = digits[0..9]
+
+        arr = (2..11).to_a.reverse
+        total = 0
+
+        digits.each_index do |i|
+          total += digits[i] * arr[i]
+        end
+
+        rest = total % 11
+        rest = rest < 2 ? 0 : 11 - rest
+
+        rest == verifier_digit
+      end
+
+  end
+
+end
