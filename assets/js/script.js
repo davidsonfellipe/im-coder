@@ -8,9 +8,8 @@
 (function ($) {
     'use strict';
 
-    var codeLang;
-
     var ImCoder = function () {
+
         this.text = null;
 
         this.index = 0;
@@ -31,6 +30,7 @@
     };
 
     ImCoder.prototype.reset = function () {
+
         this.text = null;
 
         this.index = 0;
@@ -63,17 +63,19 @@
         );
 
         $('.im-coder-lang').click(function () {
-            codeLang = $(this).text();
+
+            var codeLang = $(this).text();
+
             var lang = 'langs/' + codeLang + '.txt';
 
             $.get(lang, function(data) {
                 that.text = that.setText(data);
             });
-            
+
             $('#im-coder-sidebar').hide();
         });
 
-        $('.im-coder-paste').bind('paste blur', function () {
+        $('#im-coder-paste').bind('paste blur', function () {
 
             var element = this;
 
@@ -101,6 +103,7 @@
         if (this.text) {
 
             var words = this.content();
+            var code = '';
 
             if (words.substring(words.length - 1, words.length) === '|') {
                 $('#im-coder-editor').html($('#im-coder-editor')
@@ -114,11 +117,11 @@
 
             this.index += this.lettersByTyping;
 
-            var text = this.text.substring(0,this.index);
+            var text = this.text.substring(0, this.index);
 
-            var highlighted = hljs.highlight(codeLang, text).value;
+            code = hljs.highlightAuto(text).value;
 
-            var codeChunk = highlighted.replace(/\n/g, this.lineBreak);
+            var codeChunk = code.replace(/\n/g, this.lineBreak);
 
             $('#im-coder-editor').html(codeChunk);
 
