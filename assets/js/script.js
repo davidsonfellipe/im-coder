@@ -64,7 +64,7 @@
 
         $('.im-coder-lang').click(function () {
 
-            var codeLang = $(this).text();
+            var codeLang = $(this).data('syntax-lang');
 
             var lang = 'langs/' + codeLang + '.txt';
 
