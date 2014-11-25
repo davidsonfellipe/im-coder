@@ -27,7 +27,6 @@ module.exports = function( grunt ) {
             src: 'app/',
             dest: '/public_html/apps/im-coder/',
             exclusions: ['.DS_Store',
-                         'Makefile',
                          'package.json',
                          'Gruntfile.js',
                          'node_modules'],
