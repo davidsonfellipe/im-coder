@@ -13,6 +13,7 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
 * go
 * html
 * js
+* julia
 * perl
 * php
 * python
