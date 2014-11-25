@@ -37,8 +37,8 @@ module.exports = function( grunt ) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-ftpush');
+    // Load all tasks
+    require('load-grunt-tasks')(grunt);
+
     grunt.registerTask('default', ['jshint']);
 };
