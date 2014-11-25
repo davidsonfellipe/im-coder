@@ -21,13 +21,14 @@ a:hover {
 
 .im-coder-logo {
   background: url('../img/logo.png') no-repeat 0 0;
+  background-size: contain;
   height: 100px;
   margin: 50px auto;
-  width: 400px;
+  max-width: 400px;
 }
 
 .im-coder-slogan {
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .im-coder-editor {
@@ -121,7 +122,8 @@ a:hover {
   resize: none;
   text-align: center;
   text-decoration: none;
-  width: 610px;
+  width: 70%;
+  max-width: 610px;
 }
 
 .im-coder-footer {
@@ -138,6 +140,7 @@ a:hover {
 .im-coder-copy {
   clear: both;
   display: block;
+  margin-bottom: 20px;
 }
 
 .im-coder-♥ {
