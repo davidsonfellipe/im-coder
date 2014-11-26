@@ -35,6 +35,7 @@ a:hover {
   counter-reset: listing;
   position: relative;
   white-space: pre;
+  word-wrap: break-word;
 }
 
 .im-coder-editing {
