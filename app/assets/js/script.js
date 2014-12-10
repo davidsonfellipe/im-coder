@@ -45,7 +45,7 @@
 
         var that = this;
 
-        $(document).keydown(
+        $(document).bind('keydown touchstart',
             function (event) {
 
                 if (event.which !== 27) {
