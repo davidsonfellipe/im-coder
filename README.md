@@ -25,7 +25,7 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
  * Properties in alphabetical order
 * JS
  * 4 spaces
- * Code with JSHint - 0 erros
+ * Code with JSHint - 0 errors
 
 #### Author
 
