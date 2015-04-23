@@ -17,6 +17,8 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
 * perl
 * php
 * python
+* objective-c
+* swift
 
 ## Coding conventions
 
