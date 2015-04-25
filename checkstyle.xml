@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<checkstyle>
+
+<file name="src/js/c.js">
+  
+  <error
+    line="11"
+    severity="error"
+    message="Cyclomatic: 21,
+    Halstead: 105.19
+    | Effort: 1.5177e+5
+    | Volume: 1442.9
+    | Vocabulary: 17"
+    source="&lt;anonymous&gt;.init"
+    />
+  
+</file>
+
+
+
+<file name="src/js/b.js">
+  
+</file>
+
+
+
+<file name="src/js/a.js">
+  
+</file>
+
+
+
+</checkstyle>
