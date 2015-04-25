@@ -1,43 +1,18 @@
-/*global module:false*/
+module.exports = function(grunt) {
 
-module.exports = function( grunt ) {
-    "use strict";
-    grunt.initConfig({
-        jshint: {
-            all: ['app/assets/js/script.js']
-        },
-        connect: {
-            server: {
-                options: {
-                    port: 9000,
-                    hostname: '*',
-                    base: 'app/',
-                    open: true,
-                    keepalive: true
-                }
-            }
-        },
-        ftpush: {
-          build: {
-            auth: {
-              host: 'fellipe.com',
-              port: 21,
-              authKey: 'key'
-            },
-            src: 'app/',
-            dest: '/public_html/apps/im-coder/',
-            exclusions: ['.DS_Store',
-                         'package.json',
-                         'Gruntfile.js',
-                         'node_modules'],
-            simple: true,
-            useList: false
-          }
-        }
-    });
+  var path = require('path');
 
-    // Load all tasks
-    require('load-grunt-tasks')(grunt);
+  // measures the time each task takes
+  require('time-grunt')(grunt);
 
-    grunt.registerTask('default', ['jshint']);
+  // load-grunt-config includes load-grunt-tasks
+  require('load-grunt-config')(grunt, {
+    configPath: path.join(process.cwd(), '_grunt'),
+    data: { //data passed into config.  Can use with <%= test %>
+      path: {
+        src: 'src/',
+        dest: 'build/'
+      }
+    }
+  });
 };
