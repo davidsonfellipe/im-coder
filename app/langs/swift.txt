@@ -1,0 +1,168 @@
+import Cocoa
+import Foundation
+import UIKit
+
+public struct DataType {
+
+    public init(data:NSData, options opt: NSDataTypeReadingOptions = .AllowFragments, error: NSErrorPointer = nil) {
+        if let object: AnyObject = NSDataTypeSerialization.DataTypeObjectWithData(data, options: opt, error: error) {
+            self.init(object)
+        } else {
+            self.init(NSNull())
+        }
+    }
+
+    public init(_ object: AnyObject) {
+        self.object = object
+    }
+
+    private var _object: AnyObject = NSNull()
+    private var _type: Type = .Null
+    private var _error: NSError?
+
+    public var object: AnyObject {
+        get {
+            return _object
+        }
+        set {
+            _object = newValue
+            switch newValue {
+            case let number as NSNumber:
+                if number.isBool {
+                    _type = .Bool
+                } else {
+                    _type = .Number
+                }
+            case let string as NSString:
+                _type = .String
+            case let null as NSNull:
+                _type = .Null
+            case let array as [AnyObject]:
+                _type = .Array
+            case let dictionary as [String : AnyObject]:
+                _type = .Dictionary
+            default:
+                _type = .Unknown
+                _object = NSNull()
+                _error = NSError(domain: ErrorDomain, code: ErrorUnsupportedType, userInfo: [NSLocalizedDescriptionKey: "It is a unsupported type"])
+            }
+        }
+    }
+
+    public var type: Type { get { return _type } }
+
+    public var error: NSError? { get { return self._error } }
+
+    public static var nullDataType: DataType { get { return DataType(NSNull()) } }
+
+}
+
+class ManagerDownloader: NSViewController {
+
+    var session: Session! {
+        didSet {
+            updateUI()
+        }
+    }
+
+    @IBOutlet var downloadButton: NSButton!
+    @IBOutlet var progressIndicator: NSProgressIndicator!
+
+    var downloadFinishedCallback: () -> () = {}
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUI()
+    }
+
+    private func updateUI()
+    {
+        if let session = session {
+            if session.hd_url != nil {
+                view.hidden = false
+                updateDownloadStatus()
+            } else {
+                view.hidden = true
+            }
+        } else {
+            view.hidden = true
+        }
+    }
+
+    private func updateDownloadStatus()
+    {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserverForName(VideoStoreStartedDownloadNotification, object: nil, queue: NSOperationQueue.mainQueue()) { note in
+            if self.session.hd_url == nil {
+                return
+            }
+
+            if let url = note.object as? String {
+                if url != self.session.hd_url! {
+                    return
+                }
+            } else {
+                return
+            }
+
+            self.progressIndicator.hidden = false
+            self.downloadButton.hidden = true
+        }
+        nc.addObserverForName(VideoStoreFinishedDownloadNotification, object: nil, queue: NSOperationQueue.mainQueue()) { note in
+            if self.session.hd_url == nil {
+                return
+            }
+
+            if let url = note.object as? String {
+                if url != self.session.hd_url! {
+                    return
+                }
+            } else {
+                return
+            }
+
+            self.progressIndicator.hidden = true
+            self.downloadButton.hidden = true
+
+            self.downloadFinishedCallback()
+        }
+        nc.addObserverForName(VideoStoreDownloadProgressedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { note in
+            if self.session.hd_url == nil {
+                return
+            }
+
+            if let url = note.object as? String {
+                if url != self.session.hd_url! {
+                    return
+                }
+            } else {
+                return
+            }
+
+            self.progressIndicator.hidden = false
+            self.downloadButton.hidden = true
+
+            if let info = note.userInfo {
+                if let tB = info["tB"] as? Int {
+                    self.progressIndicator.maxValue = Double(tB)
+                }
+                if let totalBytesWritten = info["totalBytesWritten"] as? Int {
+                    self.progressIndicator.doubleValue = Double(totalBytesWritten)
+                }
+            }
+        }
+
+        if VideoStore.SharedStore().isDownloading(session.hd_url!) {
+            self.progressIndicator.hidden = false
+            self.downloadButton.hidden = true
+        } else {
+            if VideoStore.SharedStore().hasVideo(session.hd_url!) {
+                self.progressIndicator.hidden = true
+                self.downloadButton.hidden = true
+            } else {
+                self.progressIndicator.hidden = true
+                self.downloadButton.hidden = false
+            }
+        }
+    }
+}
