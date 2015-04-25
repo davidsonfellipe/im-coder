@@ -9,6 +9,7 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
 ## Supports
 
 * c
+* coffeeScript
 * css
 * go
 * html
