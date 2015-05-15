@@ -11,14 +11,17 @@ _Create fake codes for classes, movies, tv shows... Or be a troll using for live
 * c
 * coffeeScript
 * css
+* c#
 * erlang
 * go
 * html
+* java
 * js
 * julia
 * perl
 * php
 * python
+* ruby
 * objective-c
 * swift
 
