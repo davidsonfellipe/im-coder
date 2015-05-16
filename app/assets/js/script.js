@@ -49,13 +49,13 @@
             function (event) {
 
                 if (event.which !== 27) {
-					if (event.which === 8) {
-						event.preventDefault();
-						that.removeText(event);
-					}
-					else {
-						that.addText(event);
-					}
+                    if (event.which === 8) {
+                        event.preventDefault();
+                        that.removeText(event);
+                    }
+                    else {
+                        that.addText(event);
+                    }
                 } else {
 
                     $('#im-coder-sidebar').show();
@@ -119,10 +119,10 @@
                 $('#im-coder-editor').addClass('im-coder-editing');
             }
 
-			// if the user press backspace repeatedly, this.index will become more and more negative, but 0 should be the limit.
-			if (this.index < 0) {
-				this.index = 0;
-			}
+            // if the user press backspace repeatedly, this.index will become more and more negative, but 0 should be the limit.
+            if (this.index < 0) {
+                this.index = 0;
+            }
 
             this.index += this.lettersByTyping;
 
@@ -138,11 +138,11 @@
         }
     };
 
-	ImCoder.prototype.removeText = function() {
-		if (this.text) {
+    ImCoder.prototype.removeText = function() {
+        if (this.text) {
 
-			var words = this.content();
-			var code = '';
+            var words = this.content();
+            var code = '';
 
             if (words.charAt(words.length - 1) === '|') {
                 $('#im-coder-editor').html($('#im-coder-editor')
@@ -150,28 +150,28 @@
                     .substring(0, words.length - 1));
             }
 
-			// if the user press any key other than backspacek repeatedly, this.index will become too big, when it should be at most the size of the code
-			if (this.index > this.text.length) {
-				this.index = this.text.length - (this.text.length % this.lettersByTyping);
-			}
-			else {
-				this.index -= this.lettersByTyping;
-			}
+            // if the user press any key other than backspacek repeatedly, this.index will become too big, when it should be at most the size of the code
+            if (this.index > this.text.length) {
+                this.index = this.text.length - (this.text.length % this.lettersByTyping);
+            }
+            else {
+                this.index -= this.lettersByTyping;
+            }
 
-			var text = this.text.substring(0, this.index);
+            var text = this.text.substring(0, this.index);
 
-			code = hljs.highlightAuto(text).value;
+            code = hljs.highlightAuto(text).value;
 
-			var codeChunk = code.replace(/\n/g, this.lineBreak);
-			if (codeChunk === '') {
-				$('#im-coder-editor').html(this.lineBreak);
-			}
-			else {
-				$('#im-coder-editor').html(codeChunk);
-			}
-			window.scrollBy(0, 150);
-		}
-	};
+            var codeChunk = code.replace(/\n/g, this.lineBreak);
+            if (codeChunk === '') {
+                $('#im-coder-editor').html(this.lineBreak);
+            }
+            else {
+                $('#im-coder-editor').html(codeChunk);
+            }
+            window.scrollBy(0, 150);
+        }
+    };
 
     ImCoder.prototype.blinkCursor = function () {
 
