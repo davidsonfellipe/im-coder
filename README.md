@@ -1,5 +1,4 @@
-========
-# im-coder
+# im-code
 _Create fake codes for classes, movies, tv shows... Or be a troll using for live coding at talks ;)_
 
 # Demo
