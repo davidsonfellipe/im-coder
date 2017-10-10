@@ -156,6 +156,10 @@ a:hover {
   animation: im-coder-heart .6s infinite linear alternate-reverse;
 }
 
+.im-coder-characters {
+  width: 30px;
+}
+
 @-webkit-keyframes im-coder-heart {
     to {-webkit-transform: scale(1.1);}
 }

@@ -48,20 +48,21 @@
         $(document).bind('keydown touchstart',
             function (event) {
 
-                if (event.which !== 27) {
-                    if (event.which === 8) {
-                        event.preventDefault();
-                        that.removeText(event);
+                if(!$(event.target).hasClass('im-coder-characters')) {
+                    if (event.which !== 27) {
+                        if (event.which === 8) {
+                            event.preventDefault();
+                            that.removeText(event);
+                        }
+                        else {
+                            that.addText(event);
+                        }
+                    } else {
+
+                        $('#im-coder-sidebar').show();
+
+                        that.reset();
                     }
-                    else {
-                        that.addText(event);
-                    }
-                } else {
-
-                    $('#im-coder-sidebar').show();
-
-                    that.reset();
-
                 }
             }
         );
@@ -71,6 +72,8 @@
             var codeLang = $(this).data('syntax-lang');
 
             var lang = 'langs/' + codeLang + '.txt';
+            
+            that.lettersByTyping = that.getLettersByTyping();
 
             $.get(lang, function(data) {
                 that.text = that.setText(data);
@@ -87,12 +90,20 @@
 
                 that.text = that.setText($(element).val());
 
+                that.lettersByTyping = that.getLettersByTyping();
+
                 $('#im-coder-sidebar').fadeOut('slow');
 
             }, 100);
 
         });
 
+    };
+
+    ImCoder.prototype.getLettersByTyping = function ()  {
+        var lettersByTyping = $('#im-coder-characters').val();
+        //Checking if the value exists and upper limit of 100 and assign
+        return lettersByTyping && lettersByTyping <= 100 ? parseInt(lettersByTyping) : 5
     };
 
     ImCoder.prototype.setText = function (text)  {
