@@ -1,26 +1,14 @@
 {
   "private": true,
-  "author": "Your Name <you.name@example.org>",
-  "devDependencies": {
-    "grunt": "latest",
-    "grunt-concurrent": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-connect": "^0.10.1",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-csslint": "latest",
-    "grunt-contrib-htmlmin": "latest",
-    "grunt-contrib-imagemin": "latest",
-    "grunt-contrib-jshint": "latest",
-    "grunt-contrib-less": "latest",
-    "grunt-contrib-sass": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-ftpush": "^0.3.3",
-    "grunt-newer": "latest",
-    "load-grunt-config": "latest",
-    "time-grunt": "latest"
+  "author": {
+    "name": "Davidson Fellipe",
+    "email": "davidsonfellipe@gmail.com",
+    "url": "fellipe.com"
   },
-  "dependencies": {
-    "grunt-complexity": "latest"
+  "scripts": {
+    "lint": "./node_modules/eslint/bin/eslint.js app/assets/js/script.js"
+  },
+  "devDependencies": {
+    "eslint": "4.10.0"
   }
 }
