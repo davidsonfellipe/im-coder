@@ -35,15 +35,13 @@ Create fake codes for classes, movies, tv shows... Or be a troll using for live 
 * CSS: 2 spaces, Properties in alphabetical order
 * JS: 2 spaces, Code with ESLint - 0 errors
 
-#### Author 👤
+Anyone and everyone is welcome to contribute. See some [developers](https://github.com/davidsonfellipe/im-coder/graphs/contributors) that helped.
+
+## Author 👤
 
 [![Davidson Fellipe](http://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://github.com/davidsonfellipe)
 <br>
 [Davidson Fellipe](https://github.com/davidsonfellipe)
-
-#### Contribute
-
-Anyone and everyone is welcome to contribute. See some [developers](https://github.com/davidsonfellipe/im-coder/graphs/contributors) that helped.
 
 ## License 📖
 
