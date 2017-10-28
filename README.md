@@ -1,11 +1,11 @@
-# i'm coder
+# I'm coder
 Create fake codes for classes, movies, tv shows... Or be a troll using for live coding at talks ;)
 
 # Demo
 
 [http://fellipe.com/apps/im-coder/](http://fellipe.com/apps/im-coder/)
 
-## Supports
+## Support
 
 * c
 * coffeeScript
@@ -24,14 +24,16 @@ Create fake codes for classes, movies, tv shows... Or be a troll using for live 
 * objective-c
 * swift
 
-## Coding conventions
+## Contributing 👣
 
-* CSS
- * 2 spaces
- * Properties in alphabetical order
-* JS
- * 4 spaces
- * Code with JSHint - 0 errors
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-awesome-new-feature`
+3. Commit your changes: `git commit -m 'Add some awesome feature'`
+4. Push to the branch: `git push origin my-awesome-new-feature`
+5. Submit a pull request :]
+
+* CSS: 2 spaces, Properties in alphabetical order
+* JS: 2 spaces, Code with ESLint - 0 errors
 
 #### Author
 
