@@ -1,11 +1,11 @@
-# I'm coder
+# I'm coder 👾
 Create fake codes for classes, movies, tv shows... Or be a troll using for live coding at talks ;)
 
-# Demo
+# Demo 🚀
 
 [http://fellipe.com/apps/im-coder/](http://fellipe.com/apps/im-coder/)
 
-## Support
+## Support ✔︎
 
 * c
 * coffeeScript
@@ -35,7 +35,7 @@ Create fake codes for classes, movies, tv shows... Or be a troll using for live 
 * CSS: 2 spaces, Properties in alphabetical order
 * JS: 2 spaces, Code with ESLint - 0 errors
 
-#### Author
+#### Author 👤
 
 [![Davidson Fellipe](http://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://github.com/davidsonfellipe)
 <br>
@@ -45,6 +45,6 @@ Create fake codes for classes, movies, tv shows... Or be a troll using for live 
 
 Anyone and everyone is welcome to contribute. See some [developers](https://github.com/davidsonfellipe/im-coder/graphs/contributors) that helped.
 
-## License
+## License 📖
 
 Code is under [MIT](http://davidsonfellipe.mit-license.org) license
