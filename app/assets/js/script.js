@@ -53,9 +53,7 @@
               that.addText(event)
             }
           } else {
-
             $('#im-coder-sidebar').show()
-
             that.reset()
           }
         }
