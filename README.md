@@ -3,7 +3,7 @@ Create fake codes for classes, movies, tv shows... Or be a troll using for live 
 
 # Demo 🚀
 
-[http://fellipe.com/apps/im-coder/](http://fellipe.com/apps/im-coder/)
+[https://fellipe.com/apps/im-coder/](https://fellipe.com/apps/im-coder/)
 
 ## Support ✔︎
 
