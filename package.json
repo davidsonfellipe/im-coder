@@ -9,6 +9,6 @@
     "lint": "./node_modules/eslint/bin/eslint.js app/assets/js/script.js"
   },
   "devDependencies": {
-    "eslint": "4.10.0"
+    "eslint": "7.4.0"
   }
 }
