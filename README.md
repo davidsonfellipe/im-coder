@@ -11,7 +11,6 @@ Check out the live demo here: [https://fellipe.com/apps/im-coder/](https://felli
 You can play around with fake codes in the following languages:
 
 * C
-* CoffeeScript
 * CSS
 * C#
 * Erlang
@@ -20,12 +19,16 @@ You can play around with fake codes in the following languages:
 * Java
 * JavaScript
 * Julia
+* Kotlin
+* Objective-C
 * Perl
 * PHP
 * Python
+* R
 * Ruby
-* Objective-C
+* Rust
 * Swift
+* TypeScript
 
 ## Contributing 👣
 
@@ -48,8 +51,8 @@ To see the list of wonderful developers who have contributed so far, check out t
 
 Hi, I'm Davidson Fellipe! You can find me on GitHub as well as on my personal website:
 
-[![Davidson Fellipe](http://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://github.com/davidsonfellipe)
-[Davidson Fellipe](https://github.com/davidsonfellipe)
+[![Davidson Fellipe](http://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://www.fellipe.com/)
+[Davidson Fellipe](https://www.fellipe.com/)
 
 ## License 📖
 

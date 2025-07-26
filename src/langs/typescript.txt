@@ -1,0 +1,82 @@
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+}
+
+type UserRole = 'admin' | 'user';
+
+class UserService {
+  private baseUrl: string;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  async getUser(id: number): Promise<ApiResponse<User>> {
+    const response = await fetch(`${this.baseUrl}/users/${id}`);
+    const data: User = await response.json();
+    
+    return {
+      data,
+      status: response.status
+    };
+  }
+
+  async createUser(userData: Omit<User, 'id'>): Promise<ApiResponse<User>> {
+    const newUser: User = {
+      ...userData,
+      id: Math.floor(Math.random() * 1000)
+    };
+
+    return {
+      data: newUser,
+      status: 201
+    };
+  }
+}
+
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: NodeJS.Timeout;
+  
+  return (...args: Parameters<T>) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+const userService = new UserService('https://api.example.com');
+
+const debouncedSearch = debounce(async (query: string) => {
+  console.log(`Searching for: ${query}`);
+}, 300);
+
+function isUser(obj: any): obj is User {
+  return obj 
+    && typeof obj.id === 'number'
+    && typeof obj.name === 'string'
+    && typeof obj.email === 'string';
+}
+
+export {
+  User,
+  ApiResponse,
+  UserRole,
+  UserService,
+  validateEmail,
+  debounce,
+  isUser
+}; 

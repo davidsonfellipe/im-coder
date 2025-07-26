@@ -6,9 +6,19 @@
     "url": "fellipe.com"
   },
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js app/assets/js/script.js"
+    "lint": "./node_modules/eslint/bin/eslint.js app/assets/js/script.js",
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "eslint": "7.4.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

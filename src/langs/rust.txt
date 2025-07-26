@@ -1,0 +1,149 @@
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+use std::error::Error;
+use tokio;
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+struct User {
+    id: Option<i32>,
+    name: String,
+    email: String,
+    is_active: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct ApiResponse<T> {
+    data: T,
+    status: u16,
+    message: String,
+}
+
+#[derive(Debug)]
+enum UserError {
+    ValidationError(String),
+    NetworkError(String),
+    NotFound,
+}
+
+impl std::fmt::Display for UserError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            UserError::ValidationError(msg) => write!(f, "Validation error: {}", msg),
+            UserError::NetworkError(msg) => write!(f, "Network error: {}", msg),
+            UserError::NotFound => write!(f, "User not found"),
+        }
+    }
+}
+
+impl Error for UserError {}
+
+struct UserService {
+    base_url: String,
+    client: reqwest::Client,
+}
+
+impl UserService {
+    fn new(base_url: String) -> Self {
+        Self {
+            base_url,
+            client: reqwest::Client::new(),
+        }
+    }
+
+    async fn get_user(&self, id: i32) -> Result<User, UserError> {
+        let url = format!("{}/users/{}", self.base_url, id);
+        
+        let response = self.client
+            .get(&url)
+            .send()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        if response.status().as_u16() == 404 {
+            return Err(UserError::NotFound);
+        }
+
+        let user: User = response
+            .json()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        Ok(user)
+    }
+
+    async fn create_user(&self, user: User) -> Result<User, UserError> {
+        let url = format!("{}/users", self.base_url);
+        
+        let response = self.client
+            .post(&url)
+            .json(&user)
+            .send()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        let created_user: User = response
+            .json()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        Ok(created_user)
+    }
+
+    async fn update_user(&self, id: i32, updates: HashMap<String, serde_json::Value>) -> Result<User, UserError> {
+        let url = format!("{}/users/{}", self.base_url, id);
+        
+        let response = self.client
+            .put(&url)
+            .json(&updates)
+            .send()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        let updated_user: User = response
+            .json()
+            .await
+            .map_err(|e| UserError::NetworkError(e.to_string()))?;
+
+        Ok(updated_user)
+    }
+}
+
+fn validate_email(email: &str) -> bool {
+    email.contains('@') && email.contains('.')
+}
+
+fn validate_user(user: &User) -> Result<(), UserError> {
+    if user.name.trim().is_empty() {
+        return Err(UserError::ValidationError("Name cannot be empty".to_string()));
+    }
+    
+    if !validate_email(&user.email) {
+        return Err(UserError::ValidationError("Invalid email format".to_string()));
+    }
+    
+    Ok(())
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn Error>> {
+    let service = UserService::new("https://api.example.com".to_string());
+    
+    let new_user = User {
+        id: None,
+        name: "John Doe".to_string(),
+        email: "john@example.com".to_string(),
+        is_active: true,
+    };
+    
+    match validate_user(&new_user) {
+        Ok(_) => {
+            match service.create_user(new_user).await {
+                Ok(user) => println!("User created: {:?}", user),
+                Err(e) => eprintln!("Error creating user: {}", e),
+            }
+        }
+        Err(e) => eprintln!("Validation error: {}", e),
+    }
+    
+    Ok(())
+} 

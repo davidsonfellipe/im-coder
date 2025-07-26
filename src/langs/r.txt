@@ -1,0 +1,76 @@
+# Data Analysis and Visualization
+
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+# Create sample data
+set.seed(123)
+user_data <- data.frame(
+  id = 1:100,
+  name = paste("User", 1:100),
+  age = sample(18:65, 100, replace = TRUE),
+  salary = rnorm(100, mean = 50000, sd = 15000),
+  department = sample(c("Engineering", "Marketing", "Sales", "HR"), 100, replace = TRUE)
+)
+
+# Data cleaning and transformation
+clean_data <- user_data %>%
+  filter(!is.na(age), !is.na(salary)) %>%
+  mutate(
+    age_group = case_when(
+      age < 30 ~ "Young",
+      age < 50 ~ "Middle",
+      TRUE ~ "Senior"
+    ),
+    salary_category = ifelse(salary > 60000, "High", "Low")
+  )
+
+# Statistical analysis
+summary_stats <- clean_data %>%
+  group_by(department, age_group) %>%
+  summarise(
+    avg_salary = mean(salary),
+    count = n(),
+    .groups = 'drop'
+  )
+
+# Create visualizations
+salary_plot <- ggplot(clean_data, aes(x = department, y = salary, fill = age_group)) +
+  geom_boxplot() +
+  labs(
+    title = "Salary Distribution by Department and Age Group",
+    x = "Department",
+    y = "Salary ($)",
+    fill = "Age Group"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Correlation analysis
+correlation_matrix <- cor(clean_data[, c("age", "salary")])
+
+# Linear regression model
+salary_model <- lm(salary ~ age + department, data = clean_data)
+model_summary <- summary(salary_model)
+
+# Function to predict salary
+predict_salary <- function(age, department) {
+  new_data <- data.frame(age = age, department = department)
+  prediction <- predict(salary_model, new_data)
+  return(prediction)
+}
+
+# Example prediction
+predicted_salary <- predict_salary(35, "Engineering")
+
+# Print results
+cat("Summary Statistics:\n")
+print(summary_stats)
+
+cat("\nCorrelation between age and salary:", correlation_matrix[1, 2], "\n")
+
+cat("\nPredicted salary for 35-year-old engineer:", predicted_salary, "\n")
+
+# Save plot
+ggsave("salary_analysis.png", salary_plot, width = 10, height = 6) 
