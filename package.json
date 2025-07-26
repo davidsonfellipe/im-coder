@@ -6,7 +6,7 @@
     "url": "fellipe.com"
   },
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js app/assets/js/script.js",
+    "lint": "./node_modules/eslint/bin/eslint.js src/assets/js/script.js",
     "start": "node server.js",
     "dev": "node server.js",
     "serve": "node server.js",
