@@ -51,9 +51,9 @@ To see the list of wonderful developers who have contributed so far, check out t
 
 Hi, I'm Davidson Fellipe! You can find me on GitHub as well as on my personal website:
 
-[![Davidson Fellipe](http://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://www.fellipe.com/)
+[![Davidson Fellipe](https://gravatar.com/avatar/054c583ad5dc09a861874e14dcb43e4c?s=70)](https://www.fellipe.com/)
 [Davidson Fellipe](https://www.fellipe.com/)
 
 ## License 📖
 
-The code is licensed under the [MIT License](http://davidsonfellipe.mit-license.org), which means you are free to use, modify, and distribute it as you see fit. Happy coding! 😊
+The code is licensed under the [MIT License](https://davidsonfellipe.mit-license.org), which means you are free to use, modify, and distribute it as you see fit. Happy coding! 😊
