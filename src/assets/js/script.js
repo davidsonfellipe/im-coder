@@ -36,10 +36,17 @@
     $('#im-coder-editor').html('<span class="im-coder-line"></span>')
 
     $('#im-coder-editor').removeClass('im-coder-editing')
+    this.hideStatusBar()
+    this.loadSavedTheme()
   }
 
   ImCoder.prototype.bind = function () {
     var that = this
+
+    $('#im-coder-theme-selector').on('change', function() {
+      var selectedTheme = $(this).val()
+      that.changeTheme(selectedTheme)
+    })
 
     $(document).bind('keydown touchstart',
       function (event) {
@@ -55,6 +62,7 @@
           } else {
             $('#im-coder-sidebar').show()
             that.reset()
+            that.hideStatusBar()
           }
         }
       }
@@ -68,6 +76,7 @@
 
       $.get(lang, function(data) {
         that.text = that.setText(data)
+        that.showStatusBar()
       })
 
       $('#im-coder-sidebar').hide()
@@ -83,6 +92,7 @@
         that.lettersByTyping = that.getLettersByTyping()
 
         $('#im-coder-sidebar').fadeOut('slow')
+        that.showStatusBar()
 
       }, 100)
 
@@ -181,6 +191,44 @@
         .substring(0, words.length - 1))
     } else {
       $('#im-coder-editor').append('|')
+    }
+  }
+
+  ImCoder.prototype.showStatusBar = function () {
+    $('#im-coder-statusbar').addClass('visible')
+  }
+
+  ImCoder.prototype.hideStatusBar = function () {
+    $('#im-coder-statusbar').removeClass('visible')
+  }
+
+  ImCoder.prototype.changeTheme = function(themeName) {
+    var themeUrls = {
+      'solarized_dark': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/base16/solarized-dark.css',
+      'monokai': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/monokai.min.css',
+      'dracula': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/base16/dracula.css',
+      'github': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github.min.css',
+      'vs': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/vs.min.css',
+      'atom': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/atom-one-dark.min.css',
+      'nord': 'https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/nord.min.css',
+    }
+
+    $('#theme-css').remove()
+    
+    $('head').append('<link rel="stylesheet" href="' + themeUrls[themeName] + '" id="theme-css">')
+    
+    localStorage.setItem('im-coder-theme', themeName)
+    
+    if (this.text) {
+      this.addText()
+    }
+  }
+
+  ImCoder.prototype.loadSavedTheme = function() {
+    var savedTheme = localStorage.getItem('im-coder-theme')
+    if (savedTheme) {
+      $('#im-coder-theme-selector').val(savedTheme)
+      this.changeTheme(savedTheme)
     }
   }
 

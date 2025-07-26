@@ -25,9 +25,38 @@
     <link rel="stylesheet" href="assets/css/solarized_dark.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   </head>
   <body class="im-coder">
     <pre id="im-coder-editor" class="im-coder-editor"></pre>
+    <!-- Status Bar -->
+    <div id="im-coder-statusbar" class="im-coder-statusbar">
+      <div class="im-coder-statusbar-left">
+        <span class="im-coder-statusbar-item">
+          <i class="fas fa-code-branch"></i>
+          <a href="https://github.com/davidsonfellipe/im-coder" target="_blank" class="im-coder-github-link">main</a>
+        </span>
+        <span class="im-coder-statusbar-item">
+          <i class="fas fa-palette"></i>
+          <select id="im-coder-theme-selector" class="im-coder-theme-selector">
+            <option value="solarized_dark">Solarized Dark</option>
+            <option value="monokai">Monokai</option>
+            <option value="dracula">Dracula</option>
+            <option value="github">GitHub</option>
+            <option value="vs">Visual Studio</option>
+            <option value="atom">Atom</option>
+            <option value="nord">Nord</option>
+            <option value="material">Material</option>
+          </select>
+        </span>
+      </div>
+      <div class="im-coder-statusbar-right">
+        <span class="im-coder-statusbar-item">
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/davidsonfellipe/im-coder" target="_blank" class="im-coder-github-link">on github</a>
+        </span>
+      </div>
+    </div>
     <section id='im-coder-sidebar' class="im-coder-sidebar">
       <header class="im-coder-header">
         <div class="im-coder-logo"></div>
@@ -36,7 +65,7 @@
       </header>
       <div class="im-coder-characters-wrapper">
           <span>Typing speed: characters per press (Max 100)</span>
-          <input id="im-coder-characters" class="im-coder-characters" type="number" name="characters" max="1" min="30" value="5">
+          <input id="im-coder-characters" class="im-coder-characters" type="number" name="characters" min="1" max="100" value="5">
       </div>
       <ul class="im-coder-langs">
         <li class="im-coder-lang" data-syntax-lang="c">
