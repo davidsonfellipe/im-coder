@@ -313,3 +313,133 @@ a:hover {
 .im-coder-theme-selector option[value="material"] {
   background-color: #263238;
 }
+
+/* LenaJS Demo Banner */
+.im-coder-banner {
+  background: linear-gradient(135deg, #cc4436 0%, #ea666a 100%);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+  padding: 10px 10px 0 10px;
+  position: static;
+  margin-top: 50px;
+  height: 50px;
+  border-radius: 0;
+}
+
+.im-coder-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.im-coder-banner-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.im-coder-banner-text {
+  flex: 1;
+  color: white;
+  min-width: 0;
+}
+
+.im-coder-banner-text h3 {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 3px 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  text-align: left;
+}
+
+.im-coder-banner-text p {
+  font-size: 11px;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.im-coder-banner-action {
+  flex-shrink: 0;
+}
+
+.im-coder-banner-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.im-coder-banner-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.im-coder-banner-button i {
+  font-size: 10px;
+}
+
+/* Hide banner when sidebar is visible */
+.im-coder-sidebar:not(.hidden) ~ .im-coder-banner {
+  display: none;
+}
+
+/* Responsive design for the banner */
+@media (max-width: 768px) {
+  .im-coder-banner-content {
+    gap: 8px;
+  }
+  
+  .im-coder-banner-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .im-coder-banner-text h3 {
+    font-size: 13px;
+  }
+  
+  .im-coder-banner-text p {
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .im-coder-banner-button {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+}
